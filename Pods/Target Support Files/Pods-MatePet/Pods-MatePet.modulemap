@@ -1,0 +1,6 @@
+framework module Pods_MatePet {
+  umbrella header "Pods-MatePet-umbrella.h"
+
+  export *
+  module * { export * }
+}
