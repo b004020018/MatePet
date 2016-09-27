@@ -7,5 +7,8 @@ target 'MatePet' do
 
   # Pods for MatePet
   pod 'Firebase'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
 
 end
