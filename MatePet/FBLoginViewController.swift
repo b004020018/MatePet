@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -18,16 +19,21 @@ class FBLoginViewController: UIViewController {
             if facebookError != nil { print("Facebook login failed. Error \(facebookError)")
             } else if facebookResult.isCancelled { print("Facebook login was cancelled.")
             } else {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let ToMainViewController = storyboard.instantiateViewControllerWithIdentifier("AddNewDataView") as! AddNewDataViewController
-                
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.window?.rootViewController = ToMainViewController
-                
-                print("You’re in :)")}
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+                FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
+//                    push to main page
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let ToMainViewController = storyboard.instantiateViewControllerWithIdentifier("AddNewDataView") as! AddNewDataViewController
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.window?.rootViewController = ToMainViewController
+                    
+                    print("You’re in :)")
+                }
+            }
         })
     }
-
-    }
+    
+    
+}
 
 

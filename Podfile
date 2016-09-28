@@ -10,5 +10,5 @@ target 'MatePet' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
-
+  pod 'Firebase/Auth'
 end
