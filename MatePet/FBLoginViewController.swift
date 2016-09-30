@@ -23,7 +23,7 @@ class FBLoginViewController: UIViewController {
                 FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
 //                    push to main page
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let ToMainViewController = storyboard.instantiateViewControllerWithIdentifier("AddNewDataView") as! AddNewDataViewController
+                    let ToMainViewController = storyboard.instantiateViewControllerWithIdentifier("toMainViewController") as! MainPageViewController
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.window?.rootViewController = ToMainViewController
                     

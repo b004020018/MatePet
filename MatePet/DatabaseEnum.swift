@@ -8,10 +8,6 @@
 
 import Foundation
 
-
-let colorPicker1 = ["白色", "黑色", "棕色", "黃色", "虎斑", "花色", "其他"]
-
-
 enum Sexual: String {
     
     case male = "M"

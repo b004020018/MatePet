@@ -31,12 +31,10 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let rootRef = FIRDatabase.database().reference()
         rootRef.child("Cats").childByAutoId().setValue(cat)
         
-        
-        
-//        let storage = FIRStorage.storage()
-//        let storageRef = storage.referenceForURL("gs://matepet-eb8e1.appspot.com")
-        
     }
+    
+    
+    
     
     
     enum DataPickerType: Int {
@@ -46,15 +44,6 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         case district = 3
     }
     
-    let sexualPicker : [Sexual] = [ .male, .female, .unknown ]
-    let agePicker : [Age] = [.child, .adult ]
-    let colourPicker : [Colour] = [.white, .black, .brown, .yellow, .tabby, .mix, .other]
-    let districtPicker: [District] = [.tw_tpe, .tw_nwt, .tw_kee, .tw_ila, .tw_tao, .tw_hsq, .tw_hsz, .tw_mia, .tw_txg, .tw_cha, .tw_nan, .tw_yun, .tw_cyq, .tw_cyi, .tw_tnn, .tw_khh, .tw_pif, .tw_hua, .tw_ttt, .tw_pen, .tw_kin, .tw_lie]
-    
-    
-    
-    
-    
     struct SelectedDataDetail {
         var sex: String!
         var age: String!
@@ -62,7 +51,16 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         var district: Int!
         var description: String!
     }
+    
+    
+    
     var selectedDataDetail = SelectedDataDetail()
+    
+    let sexualPicker : [Sexual] = [ .male, .female, .unknown ]
+    let agePicker : [Age] = [.child, .adult ]
+    let colourPicker : [Colour] = [.white, .black, .brown, .yellow, .tabby, .mix, .other]
+    let districtPicker: [District] = [.tw_tpe, .tw_nwt, .tw_kee, .tw_ila, .tw_tao, .tw_hsq, .tw_hsz, .tw_mia, .tw_txg, .tw_cha, .tw_nan, .tw_yun, .tw_cyq, .tw_cyi, .tw_tnn, .tw_khh, .tw_pif, .tw_hua, .tw_ttt, .tw_pen, .tw_kin, .tw_lie]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +68,6 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.pickerView.delegate = self
         selectedDataDetail.description = addDataTextView.text
        
-        
-    
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
