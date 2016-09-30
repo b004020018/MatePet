@@ -30,7 +30,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7m-ui-prf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1225" y="269"/>
+            <point key="canvasLocation" x="-1817" y="287"/>
+        </scene>
+        <!--Main Page View Controller-->
+        <scene sceneID="GGI-Wb-Jh1">
+            <objects>
+                <collectionViewController id="u2N-AN-Ygk" customClass="MainPageViewController" customModule="MatePet" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Lo2-yN-fCA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ihf-gs-1zU">
+                            <size key="itemSize" width="200" height="300"/>
+                            <size key="headerReferenceSize" width="50" height="200"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wjT-RT-s5b">
+                                <rect key="frame" x="10" y="210" width="200" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SUK-bh-cuS">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="u2N-AN-Ygk" id="0F9-xJ-jFS"/>
+                            <outlet property="delegate" destination="u2N-AN-Ygk" id="5w3-RR-IX2"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fep-ER-Ndc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-485" y="304"/>
         </scene>
         <!--Add New Data View Controller-->
         <scene sceneID="tne-QT-ifu">
