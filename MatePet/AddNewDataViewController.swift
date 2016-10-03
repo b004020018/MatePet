@@ -10,10 +10,13 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import Firebase
+import MobileCoreServices
+import MediaPlayer
 
-
-class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var addVideoView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var addDataTextView: UITextView!
     @IBAction func saveNewDataButton(sender: UIButton) {
@@ -33,9 +36,58 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
+    let imagePicker = UIImagePickerController()
     
+    func addVideoViewTapped(sender: AnyObject)
+    {
+        if (UIImagePickerController.isSourceTypeAvailable(.Camera)) {
+            if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+                
+                imagePicker.sourceType = .Camera
+                imagePicker.videoMaximumDuration = NSTimeInterval(10)
+                imagePicker.mediaTypes = [kUTTypeMovie as String]
+                imagePicker.allowsEditing = false
+                imagePicker.view.frame = CGRectMake(5, 5, 400, 400)
+                imagePicker.delegate = self
+                
+                presentViewController(imagePicker, animated: true, completion: {})
+            } else {
+                let alertView: UIAlertView = UIAlertView(title: "非後鏡頭", message: "非使用後鏡頭，請使用後鏡頭", delegate: self, cancelButtonTitle: "確定")
+                alertView.show()
+            }
+        } else {
+            let alertView: UIAlertView = UIAlertView(title: "無攝影裝置", message: "偵測不到攝影裝置，無法攝影！", delegate: self, cancelButtonTitle: "確定")
+            alertView.show()
+        }
     
+    }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
+        //got a vedio
+        if let videoPath = info[UIImagePickerControllerMediaURL] as? NSURL {
+            uploadVideoToFirebaseStorage(videoPath)
+        }
+        
+        
+        
+//        chooseImage.contentMode = UIViewContentMode.ScaleAspectFill
+//        chooseImage.clipsToBounds = true
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func uploadVideoToFirebaseStorage(url: NSURL){
+        let storageRef = FIRStorage.storage().referenceWithPath("CatsVideo/ \(FIRAuth.auth()?.currentUser?.uid).mov")
+        let uploadMetadata = FIRStorageMetadata()
+        uploadMetadata.contentType = "video/quicktime"
+        let uploadTask = storageRef.putFile(url, metadata: uploadMetadata) { (metadata, error) in
+            if (error != nil) {
+                print("Got error")
+            } else {
+                print("upload complete metadata: \(metadata)")
+                print("your download URL is: \(metadata?.downloadURL())")
+            }
+        }
+    }
     
     enum DataPickerType: Int {
         case sexual = 0
@@ -67,6 +119,10 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
         selectedDataDetail.description = addDataTextView.text
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddNewDataViewController.addVideoViewTapped(_:)))
+        addVideoView.userInteractionEnabled = true
+        addVideoView.addGestureRecognizer(tapGestureRecognizer)
        
     }
     

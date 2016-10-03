@@ -15,8 +15,8 @@
 		A0E7129E1D99618700E60826 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E7129C1D99618700E60826 /* Main.storyboard */; };
 		A0E712A01D99618700E60826 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0E7129F1D99618700E60826 /* Assets.xcassets */; };
 		A0E712A31D99618700E60826 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E712A11D99618700E60826 /* LaunchScreen.storyboard */; };
-		A0E712AB1D9961E300E60826 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0E712AA1D9961E300E60826 /* GoogleService-Info.plist */; };
 		A0E860B21D9E18F200A8A90F /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */; };
+		A0EE83291DA20619005971C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0EE83281DA20619005971C6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +32,8 @@
 		A0E7129F1D99618700E60826 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0E712A21D99618700E60826 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0E712A41D99618700E60826 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0E712AA1D9961E300E60826 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		A0EE83281DA20619005971C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 		A0A95A4F1D9B684F00268685 /* Assistant file */ = {
 			isa = PBXGroup;
 			children = (
-				A0E712AA1D9961E300E60826 /* GoogleService-Info.plist */,
+				A0EE83281DA20619005971C6 /* GoogleService-Info.plist */,
 				A0E712A41D99618700E60826 /* Info.plist */,
 				A0E712A11D99618700E60826 /* LaunchScreen.storyboard */,
 				A0E7129F1D99618700E60826 /* Assets.xcassets */,
@@ -143,6 +143,7 @@
 				TargetAttributes = {
 					A0E712941D99618700E60826 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 28W9L52PAW;
 					};
 				};
 			};
@@ -170,7 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E712A31D99618700E60826 /* LaunchScreen.storyboard in Resources */,
-				A0E712AB1D9961E300E60826 /* GoogleService-Info.plist in Resources */,
+				A0EE83291DA20619005971C6 /* GoogleService-Info.plist in Resources */,
 				A0E712A01D99618700E60826 /* Assets.xcassets in Resources */,
 				A0E7129E1D99618700E60826 /* Main.storyboard in Resources */,
 			);
@@ -349,10 +350,14 @@
 			baseConfigurationReference = 99030253C0EA6A5826CB844B /* Pods-MatePet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MatePet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = RosalieRabbit.MatePet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RosalieRabbit.MatePet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -361,10 +366,14 @@
 			baseConfigurationReference = 519B7737F1CDEB825A55A54C /* Pods-MatePet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MatePet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = RosalieRabbit.MatePet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RosalieRabbit.MatePet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

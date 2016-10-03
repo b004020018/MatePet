@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>214590807795-s3o7knup39ir1us9n3cojor879qf4cpe.apps.googleusercontent.com</string>
+	<string>448618902343-cd7bo35trvf6hheslvarcrmqb41g9m82.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.214590807795-s3o7knup39ir1us9n3cojor879qf4cpe</string>
+	<string>com.googleusercontent.apps.448618902343-cd7bo35trvf6hheslvarcrmqb41g9m82</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB7LwgPelCV4UzCaITle4P0tiijBTnDoRA</string>
+	<string>AIzaSyBaaH1JSx6WMSHzIEazXTtxspy9d24HJ40</string>
 	<key>GCM_SENDER_ID</key>
-	<string>214590807795</string>
+	<string>448618902343</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>RosalieRabbit.MatePet</string>
+	<string>com.RosalieRabbit.MatePet</string>
 	<key>PROJECT_ID</key>
-	<string>matepet-eb8e1</string>
+	<string>matepet-82af9</string>
 	<key>STORAGE_BUCKET</key>
-	<string>matepet-eb8e1.appspot.com</string>
+	<string>matepet-82af9.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:214590807795:ios:fd188da7021c398f</string>
+	<string>1:448618902343:ios:896758f040065033</string>
 	<key>DATABASE_URL</key>
-	<string>https://matepet-eb8e1.firebaseio.com</string>
+	<string>https://matepet-82af9.firebaseio.com</string>
 </dict>
 </plist>
