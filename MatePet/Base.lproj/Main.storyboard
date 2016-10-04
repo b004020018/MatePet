@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QGX-GT-YCx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhi-Oe-lWs">
-                                <rect key="frame" x="264" y="247" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhi-Oe-lWs">
+                                <rect key="frame" x="270" y="285" width="60" height="30"/>
                                 <state key="normal" title="FB Login"/>
                                 <connections>
                                     <action selector="FBLoginButton:" destination="QGX-GT-YCx" eventType="touchUpInside" id="TDS-CJ-RDG"/>
@@ -26,6 +26,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qhi-Oe-lWs" firstAttribute="centerY" secondItem="oyl-3u-mQP" secondAttribute="centerY" id="5vQ-f4-k9r"/>
+                            <constraint firstItem="qhi-Oe-lWs" firstAttribute="centerX" secondItem="oyl-3u-mQP" secondAttribute="centerX" id="dBE-lq-gmK"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7m-ui-prf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwO-m6-yPd">
-                                <rect key="frame" x="100" y="100" width="400" height="150"/>
+                                <rect key="frame" x="100" y="200" width="400" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="NkL-Ea-nmq"/>
                                     <constraint firstAttribute="height" constant="150" id="X8H-vL-VES"/>
@@ -123,7 +127,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GBh-Yg-dZB">
-                                <rect key="frame" x="100" y="250" width="400" height="100"/>
+                                <rect key="frame" x="100" y="350" width="400" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="X93-Gw-G5Z"/>
@@ -134,10 +138,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-QB-fWU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mQ-hd-ads">
-                                        <rect key="frame" x="242" y="139" width="79" height="21"/>
+                                        <rect key="frame" x="101" y="89" width="79" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -145,7 +149,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="mtK-Gf-Jkb"/>
+                                    <constraint firstAttribute="height" constant="200" id="mtK-Gf-Jkb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -153,13 +157,14 @@
                         <constraints>
                             <constraint firstItem="GBh-Yg-dZB" firstAttribute="top" secondItem="XwO-m6-yPd" secondAttribute="bottom" id="8Fr-XU-bb5"/>
                             <constraint firstItem="XwO-m6-yPd" firstAttribute="top" secondItem="3FS-QB-fWU" secondAttribute="bottom" id="ARm-vI-eOy"/>
+                            <constraint firstItem="3FS-QB-fWU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CMZ-aj-oqA"/>
                             <constraint firstItem="hCA-Mi-VF8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E5J-Ux-YBp"/>
                             <constraint firstItem="XwO-m6-yPd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PkR-Ah-mfn"/>
+                            <constraint firstItem="3FS-QB-fWU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qu1-a4-c59"/>
+                            <constraint firstItem="3FS-QB-fWU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VVd-bM-6CL"/>
                             <constraint firstItem="GBh-Yg-dZB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X4h-GI-ue0"/>
-                            <constraint firstAttribute="trailing" secondItem="3FS-QB-fWU" secondAttribute="trailing" id="d5u-ea-qna"/>
+                            <constraint firstAttribute="trailing" secondItem="3FS-QB-fWU" secondAttribute="trailing" id="deb-X5-An6"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hCA-Mi-VF8" secondAttribute="bottom" constant="20" id="fxe-Ga-MKR"/>
-                            <constraint firstItem="3FS-QB-fWU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wlE-gv-kW1"/>
-                            <constraint firstItem="3FS-QB-fWU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yfk-9P-F8s"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
