@@ -14,5 +14,6 @@ target 'MatePet' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'Fusuma'
+  pod 'HanekeSwift'
 
 end
