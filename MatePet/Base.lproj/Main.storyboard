@@ -45,27 +45,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ihf-gs-1zU">
-                            <size key="itemSize" width="200" height="300"/>
+                            <size key="itemSize" width="250" height="300"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="wjT-RT-s5b" customClass="catcell" customModule="MatePet" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="200" height="300"/>
+                                <rect key="frame" x="10" y="10" width="250" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="district" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vE8-PV-qq8">
-                                            <rect key="frame" x="73" y="98" width="54" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxv-FX-Jnz">
+                                            <rect key="frame" x="165" y="260" width="55" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="55" id="M7e-eY-Vi5"/>
+                                                <constraint firstAttribute="height" constant="20" id="iOq-9O-hZg"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxv-FX-Jnz">
-                                            <rect key="frame" x="76" y="151" width="48" height="21"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vna-Nj-FNJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                                            <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="250" id="7Cg-qg-NIC"/>
+                                                <constraint firstAttribute="width" constant="250" id="S1O-4R-RaO"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="district" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vE8-PV-qq8">
+                                            <rect key="frame" x="30" y="260" width="55" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="EEd-38-MTT"/>
+                                                <constraint firstAttribute="width" constant="55" id="Unu-q2-zGb"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -73,7 +89,17 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="Vna-Nj-FNJ" firstAttribute="leading" secondItem="wjT-RT-s5b" secondAttribute="leading" id="F2J-Qo-mff"/>
+                                    <constraint firstAttribute="trailing" secondItem="fxv-FX-Jnz" secondAttribute="trailing" constant="30" id="IJc-0w-qTj"/>
+                                    <constraint firstItem="vE8-PV-qq8" firstAttribute="top" secondItem="Vna-Nj-FNJ" secondAttribute="bottom" constant="10" id="LCs-ze-sk3"/>
+                                    <constraint firstItem="vE8-PV-qq8" firstAttribute="leading" secondItem="wjT-RT-s5b" secondAttribute="leading" constant="30" id="UlI-UV-5sh"/>
+                                    <constraint firstItem="fxv-FX-Jnz" firstAttribute="top" secondItem="Vna-Nj-FNJ" secondAttribute="bottom" constant="10" id="YB7-Zn-PHF"/>
+                                    <constraint firstItem="Vna-Nj-FNJ" firstAttribute="top" secondItem="wjT-RT-s5b" secondAttribute="top" id="iSI-fE-Vn9"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vna-Nj-FNJ" secondAttribute="trailing" id="ji8-JR-vFg"/>
+                                </constraints>
                                 <connections>
+                                    <outlet property="catView" destination="Vna-Nj-FNJ" id="h46-Jc-Wc8"/>
                                     <outlet property="districtLabel" destination="vE8-PV-qq8" id="DXC-tW-nEy"/>
                                     <outlet property="ownerLabel" destination="fxv-FX-Jnz" id="rlD-Kg-tJ3"/>
                                 </connections>

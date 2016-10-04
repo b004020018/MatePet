@@ -16,7 +16,10 @@ import MediaPlayer
 import AVKit
 import Fusuma
 
-class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FusumaDelegate {
+    
+    var imagedata: NSData?
+    var localVideoPath: NSURL?
     
     @IBOutlet weak var addVideoView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
@@ -39,73 +42,77 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         rootRef.child("Cats").child(autoID).setValue(cat)
         
         //store in firebase
-        let storageRef = FIRStorage.storage().referenceWithPath("CatsVideo/\(autoID).mov")
-        let uploadMetadata = FIRStorageMetadata()
-        uploadMetadata.contentType = "video/quicktime"
-//        let uploadTask = storageRef.putFile(localVideoPath, metadata: uploadMetadata) { (metadata, error) in
-//            if (error != nil) {
-//                print("Got error")
-//            } else {
-//                print("upload complete metadata: \(metadata)")
-//                print("your download URL is: \(metadata?.downloadURL())")
-//            }
-//        }
-
         
-        
-        
+        if localVideoPath != nil {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(autoID).mov")
+            let uploadMetadata = FIRStorageMetadata()
+            uploadMetadata.contentType = "video/quicktime"
+            storageRef.putFile(localVideoPath!, metadata: uploadMetadata) { (metadata, error) in
+                if (error != nil) {
+                    print("Got error")
+                } else {
+//                    print("upload complete metadata: \(metadata)")
+//                    print("your download URL is: \(metadata?.downloadURL())")
+                }
+            }
+        } else if imagedata != nil {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(autoID).jpg")
+            let uploadMetadata = FIRStorageMetadata()
+            uploadMetadata.contentType = "image/jpeg"
+            storageRef.putData(imagedata!, metadata: uploadMetadata) { (metadata, error) in
+                if (error != nil) {
+                    print("Got error")
+                } else {
+//                    print("upload complete metadata: \(metadata)")
+                }
+            }
+        }
     }
-    
-    var localVideoPath: NSURL!
-    let imagePicker = UIImagePickerController()
-    
     func addVideoViewTapped(sender: AnyObject)
     {
-        
-        
-        
-        
-        
-//        if (UIImagePickerController.isSourceTypeAvailable(.Camera)) {
-//            if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-//                
-//                imagePicker.sourceType = .Camera
-//                imagePicker.videoMaximumDuration = NSTimeInterval(10)
-//                imagePicker.mediaTypes = [kUTTypeMovie as String]
-//                imagePicker.allowsEditing = false
-//                imagePicker.delegate = self
-//                
-//                presentViewController(imagePicker, animated: true, completion: {})
-//            } else {
-//                let alertView: UIAlertView = UIAlertView(title: "非後鏡頭", message: "非使用後鏡頭，請使用後鏡頭", delegate: self, cancelButtonTitle: "確定")
-//                alertView.show()
-//            }
-//        } else {
-//            let alertView: UIAlertView = UIAlertView(title: "無攝影裝置", message: "偵測不到攝影裝置，無法攝影！", delegate: self, cancelButtonTitle: "確定")
-//            alertView.show()
-//        }
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        fusuma.hasVideo = true // If you want to let the users allow to use video.
+        self.presentViewController(fusuma, animated: true, completion: nil)
     
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
-        //got a vedio
-         localVideoPath = info[UIImagePickerControllerMediaURL] as! NSURL
-        dismissViewControllerAnimated(true, completion: nil)
-//        let url = localVideoPath
-//        let player = AVPlayer(URL: url!)
-//        let playerViewController = AVPlayerViewController()
-//        playerViewController.player = player
-//        
-//        playerViewController.view.frame = self.addVideoView.frame
-//        self.addVideoView = playerViewController.view
-//        self.view.addSubview(playerViewController.view)
-//        self.addChildViewController(playerViewController)
-//        
-//        player.play()
+    func fusumaImageSelected(image: UIImage) {
+        let imageView = UIImageView(image: image)
+        imageView.frame = self.addVideoView.frame
+        view.addSubview(imageView)
+        imagedata = UIImagePNGRepresentation(image)
+        print("Image selected")
+    }
+    
+    // Return the image but called after is dismissed.
+    func fusumaDismissedWithImage(image: UIImage) {
+        print("Called just after FusumaViewController is dismissed.")
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: NSURL) {
+        localVideoPath = fileURL
+        let url = localVideoPath
+                let player = AVPlayer(URL: url!)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
         
+                playerViewController.view.frame = self.addVideoView.frame
+                self.addVideoView = playerViewController.view
+                self.view.addSubview(playerViewController.view)
+                self.addChildViewController(playerViewController)
+                
+                player.play()
 
-        
+        print("Called just after a video has been selected.")
     }
+    
+    // When camera roll is not authorized, this method is called.
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera roll unauthorized")
+    }
+    
     
     
     enum DataPickerType: Int {

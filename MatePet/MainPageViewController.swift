@@ -13,10 +13,12 @@ import FirebaseDatabase
 class catcell: UICollectionViewCell {
     @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var ownerLabel: UILabel!
+    @IBOutlet weak var catView: UIView!
 }
 
 
 struct cat {
+    let catID: String!
     let owner: String!
     let district: String!
 }
@@ -34,14 +36,16 @@ class MainPageViewController: UICollectionViewController{
         let databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Cats").queryOrderedByKey().observeEventType(.ChildAdded , withBlock: {
             snapshot in
-            
+            let catID = snapshot.key
             let owner = snapshot.value!["owner"] as! String
             let districtNumber = snapshot.value!["district"] as! Int
             let district = District(rawValue: districtNumber)!.title
             
-            self.cats.insert(cat(owner: owner,district: district), atIndex: 0)
+            self.cats.insert(cat(catID: catID, owner: owner, district: district), atIndex: 0)
             self.catsCollectionView.reloadData()
         })
+        
+        
         self.catsCollectionView.reloadData()
     }
     
@@ -62,7 +66,9 @@ class MainPageViewController: UICollectionViewController{
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! catcell
             cell.districtLabel.text = cats[indexPath.row].district
             cell.ownerLabel.text = cats[indexPath.row].owner
-
+            let catID = cats[indexPath.row].catID
+            let storageRef = FIRStorage.storage().referenceWithPath("/Cats/\(catID).jpg")
+            
             return cell
             
     }
