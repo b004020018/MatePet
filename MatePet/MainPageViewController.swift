@@ -7,19 +7,25 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
 
-class catcell: UICollectionViewCell {
+import Firebase
+import Haneke
+import MediaPlayer
+import AVKit
+
+class Catcell: UICollectionViewCell {
     @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var ownerLabel: UILabel!
     @IBOutlet weak var catView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    
 }
 
 
-struct cat {
+struct Cat {
     let catID: String!
     let owner: String!
+    let selected : String!
     let district: String!
 }
 
@@ -27,7 +33,7 @@ class MainPageViewController: UICollectionViewController{
    
     @IBOutlet weak var catsCollectionView: UICollectionView!
     
-    var cats = [cat]()
+    var cats = [Cat]()
     
     
     override func viewDidLoad() {
@@ -38,15 +44,14 @@ class MainPageViewController: UICollectionViewController{
             snapshot in
             let catID = snapshot.key
             let owner = snapshot.value!["owner"] as! String
+            let selected = snapshot.value!["selected"] as! String
             let districtNumber = snapshot.value!["district"] as! Int
             let district = District(rawValue: districtNumber)!.title
             
-            self.cats.insert(cat(catID: catID, owner: owner, district: district), atIndex: 0)
+            self.cats.insert(Cat(catID: catID, owner: owner, selected: selected, district: district), atIndex: 0)
             self.catsCollectionView.reloadData()
         })
         
-        
-        self.catsCollectionView.reloadData()
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -63,11 +68,38 @@ class MainPageViewController: UICollectionViewController{
         -> UICollectionViewCell {
             
             
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! catcell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! Catcell
             cell.districtLabel.text = cats[indexPath.row].district
             cell.ownerLabel.text = cats[indexPath.row].owner
             let catID = cats[indexPath.row].catID
-            let storageRef = FIRStorage.storage().referenceWithPath("/Cats/\(catID).jpg")
+            if cats[indexPath.row].selected == "image" {
+                let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")
+                storageRef.downloadURLWithCompletion { (url, error) -> Void in
+                    if (error != nil) {
+                        print("error")
+                    } else {
+                        cell.imageView.hnk_setImageFromURL(url!)
+                    }
+                }
+            }else if cats[indexPath.row].selected == "video" {
+                let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
+                storageRef.downloadURLWithCompletion{ (url, error) -> Void in
+                    if error != nil {
+                        print("error")
+                    } else {
+                        let player = AVPlayer(URL: url!)
+                        let playerViewController = AVPlayerViewController()
+                        playerViewController.player = player
+                        playerViewController.view.frame = cell.catView.frame
+                        cell.catView.addSubview(playerViewController.view)
+                        self.addChildViewController(playerViewController)
+                        
+                        
+                        
+                    }
+                }
+            }
+            
             
             return cell
             

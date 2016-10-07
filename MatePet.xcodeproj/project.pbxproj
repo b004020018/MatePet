@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0FF7D45B7FAE6364C5493941 /* Pods_MatePet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */; };
+		A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04319891DA78E5F00698EA1 /* QueryViewController.swift */; };
+		A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */; };
 		A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */; };
 		A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070419D1D9AD17900674297 /* FBLoginViewController.swift */; };
+		A0A0F8D41DA6545C00609C5C /* FilterDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */; };
+		A0D2C9D01DA6B7C20080B73B /* FilterMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */; };
 		A0E712991D99618700E60826 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E712981D99618700E60826 /* AppDelegate.swift */; };
 		A0E7129B1D99618700E60826 /* AddNewDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */; };
 		A0E7129E1D99618700E60826 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E7129C1D99618700E60826 /* Main.storyboard */; };
@@ -23,8 +27,12 @@
 		519B7737F1CDEB825A55A54C /* Pods-MatePet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatePet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MatePet/Pods-MatePet.release.xcconfig"; sourceTree = "<group>"; };
 		63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MatePet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99030253C0EA6A5826CB844B /* Pods-MatePet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatePet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatePet/Pods-MatePet.debug.xcconfig"; sourceTree = "<group>"; };
+		A04319891DA78E5F00698EA1 /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
+		A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseEnum.swift; sourceTree = "<group>"; };
 		A070419D1D9AD17900674297 /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
+		A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDataTableViewController.swift; sourceTree = "<group>"; };
+		A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterMainViewController.swift; sourceTree = "<group>"; };
 		A0E712951D99618700E60826 /* MatePet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatePet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E712981D99618700E60826 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewDataViewController.swift; sourceTree = "<group>"; };
@@ -99,11 +107,15 @@
 			isa = PBXGroup;
 			children = (
 				A0A95A4F1D9B684F00268685 /* Assistant file */,
-				A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */,
-				A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */,
 				A070419D1D9AD17900674297 /* FBLoginViewController.swift */,
+				A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */,
 				A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */,
+				A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */,
+				A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */,
+				A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */,
+				A04319891DA78E5F00698EA1 /* QueryViewController.swift */,
 				A0E7129C1D99618700E60826 /* Main.storyboard */,
+				A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */,
 			);
 			path = MatePet;
 			sourceTree = "<group>";
@@ -233,10 +245,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E860B21D9E18F200A8A90F /* MainPageViewController.swift in Sources */,
+				A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */,
+				A0A0F8D41DA6545C00609C5C /* FilterDataTableViewController.swift in Sources */,
 				A0E7129B1D99618700E60826 /* AddNewDataViewController.swift in Sources */,
 				A0E712991D99618700E60826 /* AppDelegate.swift in Sources */,
+				A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */,
 				A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */,
 				A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */,
+				A0D2C9D01DA6B7C20080B73B /* FilterMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
