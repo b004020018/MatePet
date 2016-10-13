@@ -18,6 +18,7 @@ struct Cat {
     let colour: String!
     let description: String!
     let selected : String!
+    let userFacebookID: String!
 }
 
 

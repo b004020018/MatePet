@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sr3-CV-YA9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QGX-GT-YCx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="R0D-a6-eGI">
             <objects>
-                <viewController id="QGX-GT-YCx" customClass="FBLoginViewController" customModule="MatePet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FBLoginView" id="QGX-GT-YCx" customClass="FBLoginViewController" customModule="MatePet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oBL-8X-fji"/>
                         <viewControllerLayoutGuide type="bottom" id="CyQ-aF-So7"/>
@@ -36,6 +36,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7m-ui-prf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1229" y="315"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="qYl-5A-j1x">
+            <objects>
+                <viewController id="1WB-yH-aJ5" customClass="PersonalPageViewController" customModule="MatePet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AVt-2k-hYu"/>
+                        <viewControllerLayoutGuide type="bottom" id="94C-n7-n9z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S8O-MN-i29">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6FG-RY-RQh">
+                                <rect key="frame" x="225" y="120" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="RkE-Zi-7Cl"/>
+                                    <constraint firstAttribute="height" constant="150" id="cac-kG-n1y"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNI-Ak-ljP">
+                                <rect key="frame" x="260.5" y="290" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="X4b-So-L5U"/>
+                                    <constraint firstAttribute="height" constant="25" id="eLW-6K-ul7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0P-uZ-D68">
+                                <rect key="frame" x="285" y="340" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="cey-HP-dgl"/>
+                                    <constraint firstAttribute="height" constant="30" id="yaK-Re-Rug"/>
+                                </constraints>
+                                <state key="normal" title="登出"/>
+                                <connections>
+                                    <action selector="FBLogotButton:" destination="1WB-yH-aJ5" eventType="touchUpInside" id="Q6K-BX-Fn6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T0P-uZ-D68" firstAttribute="centerX" secondItem="S8O-MN-i29" secondAttribute="centerX" id="5re-04-uKL"/>
+                            <constraint firstItem="uNI-Ak-ljP" firstAttribute="centerX" secondItem="S8O-MN-i29" secondAttribute="centerX" id="6gg-BO-SbX"/>
+                            <constraint firstItem="T0P-uZ-D68" firstAttribute="top" secondItem="uNI-Ak-ljP" secondAttribute="bottom" constant="25" id="Zvd-o4-acg"/>
+                            <constraint firstItem="6FG-RY-RQh" firstAttribute="top" secondItem="AVt-2k-hYu" secondAttribute="bottom" constant="100" id="sBu-oi-X6F"/>
+                            <constraint firstItem="6FG-RY-RQh" firstAttribute="centerX" secondItem="S8O-MN-i29" secondAttribute="centerX" id="uMR-BO-Ub3"/>
+                            <constraint firstItem="uNI-Ak-ljP" firstAttribute="top" secondItem="6FG-RY-RQh" secondAttribute="bottom" constant="20" id="udT-YG-GWL"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="wzP-GI-eEH"/>
+                    <connections>
+                        <outlet property="userImageView" destination="6FG-RY-RQh" id="1qb-tt-c2h"/>
+                        <outlet property="userNameLabel" destination="uNI-Ak-ljP" id="bOq-We-Swm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="el4-5A-0NT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1189" y="1040"/>
         </scene>
         <!--Main Page View Controller-->
         <scene sceneID="GGI-Wb-Jh1">
@@ -127,7 +188,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
-                                    <segue destination="Eda-fp-Umx" kind="push" id="PsT-pC-0MS"/>
+                                    <segue destination="Eda-fp-Umx" kind="push" identifier="ToSearchView" id="PsT-pC-0MS"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -252,7 +313,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="p39-Ic-9Cn"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sex" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kT5-co-Gbw">
@@ -262,7 +323,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="x93-4g-hdX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-eS-HQL">
@@ -660,7 +721,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-391" y="1097"/>
+            <point key="canvasLocation" x="-391" y="1117"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xFt-bQ-mUc">
@@ -674,6 +735,7 @@
                     <connections>
                         <segue destination="jwv-EI-NVF" kind="relationship" relationship="viewControllers" id="wJp-k3-6MC"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="YWK-12-rXv"/>
+                        <segue destination="1WB-yH-aJ5" kind="relationship" relationship="viewControllers" id="ejG-Hh-8ER"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUn-e0-rQg" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -18,6 +18,9 @@ class FirebaseDataModel {
         let databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Cats").queryOrderedByKey().observeEventType(.Value , withBlock: { snapshot in
             if snapshot.exists() {
+                
+                self.cats = []
+                
                 for item in [snapshot.value] {
                     // item = 第一隻貓
                     guard let itemDictionary = item as? NSDictionary else {
@@ -56,7 +59,9 @@ class FirebaseDataModel {
                         
                         let catSelected = item["selected"] as! String
                         
-                        self.cats.append(Cat(catID: catID, owner: catOwner, district: catDistrict, catCreatedAt:catCreatedAt, sex: catSex, age: catAge, colour: catColour, description: catDescription, selected: catSelected))
+                        let catuserFacebookID = item["userFacebookID"] as! String
+                        
+                        self.cats.append(Cat(catID: catID, owner: catOwner, district: catDistrict, catCreatedAt:catCreatedAt, sex: catSex, age: catAge, colour: catColour, description: catDescription, selected: catSelected, userFacebookID: catuserFacebookID))
                         self.delegate?.acceptCatData(self.cats)
                         
                     }

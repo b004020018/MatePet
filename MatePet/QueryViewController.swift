@@ -27,7 +27,7 @@ protocol PassSortDataDelegate: class {
     func acceptSortData(order: Int)
 }
 
-class QueryViewController: UIViewController, PassFileterDataDelegate, UIPopoverPresentationControllerDelegate, PassCatDataDelegate, PassSortDataDelegate {
+class QueryViewController: UIViewController, UIPopoverPresentationControllerDelegate, PassSortDataDelegate, PassFileterDataDelegate {
 
     @IBOutlet weak var searchColloectionView: UICollectionView!
     // present popover View
@@ -66,28 +66,19 @@ class QueryViewController: UIViewController, PassFileterDataDelegate, UIPopoverP
         }
     }
     
-    var mainCats = [Cat]()
+    var receiveCats = [Cat]()
     var searchCats = [Cat]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let vc = FirebaseDataModel.database
-        vc.delegate = self
-        vc.getCats()
-    }
-    
-    func acceptCatData(cats: [Cat]){
-        mainCats = cats
-        searchCats = mainCats
+        searchCats = receiveCats
         self.searchColloectionView.reloadData()
     }
-
-    
     
     
     func acceptData(age: String, sex: String, colour: String, district: String){
         searchCats = []
-        for cat in mainCats {
+        for cat in receiveCats {
             if cat.age == age && cat.sex == sex && cat.colour == colour && cat.district == district {
             searchCats.append(cat)
             }

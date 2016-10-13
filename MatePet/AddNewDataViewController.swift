@@ -23,7 +23,9 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var addDataTextView: UITextView!
     @IBAction func saveNewDataButton(sender: UIButton) {
-        
+    
+    let facebookData = NSUserDefaults.standardUserDefaults()
+        guard let userFacebookID = facebookData.stringForKey("userFacebookID") else { fatalError() }
         //store in database
         let cat: [String : AnyObject] = [
         "owner" : (FIRAuth.auth()?.currentUser?.uid)!,
@@ -33,10 +35,10 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         "age" : selectedDataDetail.age,
         "colour" : selectedDataDetail.colour,
         "description" : selectedDataDetail.description,
-        "selected" : selected ]
+        "selected" : selected,
+        "userFacebookID": userFacebookID]
         let rootRef = FIRDatabase.database().reference()
         let autoID = rootRef.child("Cats").childByAutoId().key
-        print(autoID)
         rootRef.child("Cats").child(autoID).setValue(cat)
         
         //store in firebase

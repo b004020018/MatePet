@@ -42,6 +42,18 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
         mainCats = cats
         self.catsCollectionView.reloadData()
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ToSearchView"{
+            
+            guard let destViewController = segue.destinationViewController as? QueryViewController else
+            {
+                fatalError()
+            }
+            destViewController.receiveCats = mainCats
+        }
+    }
 
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -83,8 +95,6 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
                         playerViewController.view.frame = cell.catView.frame
                         cell.catView.addSubview(playerViewController.view)
                         self.addChildViewController(playerViewController)
-
-
 
                     }
                 }
