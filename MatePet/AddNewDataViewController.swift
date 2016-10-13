@@ -27,7 +27,6 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //store in database
         let cat: [String : AnyObject] = [
         "owner" : (FIRAuth.auth()?.currentUser?.uid)!,
-        "vedio" : "12",
         "district" : selectedDataDetail.district,
         "created_at" : FIRServerValue.timestamp(),
         "sex" : selectedDataDetail.sex,

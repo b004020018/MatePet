@@ -10,7 +10,7 @@ import UIKit
 
 class FilterMainViewController: UIViewController {
     
-    var delegate : PassFileterDataDelegate?
+    weak var delegate : PassFileterDataDelegate?
     
     
     @IBAction func closeButton(sender: UIButton) {

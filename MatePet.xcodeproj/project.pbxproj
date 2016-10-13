@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0FF7D45B7FAE6364C5493941 /* Pods_MatePet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */; };
+		A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */; };
 		A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04319891DA78E5F00698EA1 /* QueryViewController.swift */; };
 		A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */; };
 		A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */; };
@@ -27,6 +28,7 @@
 		519B7737F1CDEB825A55A54C /* Pods-MatePet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatePet.release.xcconfig"; path = "Pods/Target Support Files/Pods-MatePet/Pods-MatePet.release.xcconfig"; sourceTree = "<group>"; };
 		63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MatePet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99030253C0EA6A5826CB844B /* Pods-MatePet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatePet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatePet/Pods-MatePet.debug.xcconfig"; sourceTree = "<group>"; };
+		A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataModel.swift; sourceTree = "<group>"; };
 		A04319891DA78E5F00698EA1 /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseEnum.swift; sourceTree = "<group>"; };
@@ -109,13 +111,14 @@
 				A0A95A4F1D9B684F00268685 /* Assistant file */,
 				A070419D1D9AD17900674297 /* FBLoginViewController.swift */,
 				A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */,
-				A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */,
+				A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */,
 				A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */,
+				A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */,
 				A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */,
 				A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */,
+				A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */,
 				A04319891DA78E5F00698EA1 /* QueryViewController.swift */,
 				A0E7129C1D99618700E60826 /* Main.storyboard */,
-				A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */,
 			);
 			path = MatePet;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				A0E7129B1D99618700E60826 /* AddNewDataViewController.swift in Sources */,
 				A0E712991D99618700E60826 /* AppDelegate.swift in Sources */,
 				A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */,
+				A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */,
 				A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */,
 				A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */,
 				A0D2C9D01DA6B7C20080B73B /* FilterMainViewController.swift in Sources */,

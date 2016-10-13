@@ -15,7 +15,7 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         var age: String!
         var sex: String!
         var colour: String!
-        var district: Int!
+        var district: String!
     }
  
     enum AgeEnum: Int {
@@ -40,9 +40,9 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         let ageEnum = AgeEnum(rawValue: ageSegment.selectedSegmentIndex)!
         switch ageEnum {
         case .child:
-            filterParameters.age = "CHILD"
+            filterParameters.age = "幼年"
         case .adult:
-            filterParameters.age = "ADULT"
+            filterParameters.age = "成年"
         }
     }
     
@@ -51,11 +51,11 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         let sexEnum = SexEnum(rawValue: ageSegment.selectedSegmentIndex)!
         switch sexEnum {
         case .male:
-            filterParameters.sex = "M"
+            filterParameters.sex = "公"
         case .female:
-            filterParameters.sex = "F"
+            filterParameters.sex = "母"
         case .unknow:
-            filterParameters.sex = "U"
+            filterParameters.sex = "未知"
         }
         
     }
@@ -149,7 +149,7 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         } else if pickerView.tag == 1 {
             let district = districtPicker[row]
             districtTextField.text = district.title
-            filterParameters.district = district.rawValue
+            filterParameters.district = district.title
         }
     }
 

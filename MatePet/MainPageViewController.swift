@@ -15,64 +15,54 @@ import AVKit
 
 class Catcell: UICollectionViewCell {
     @IBOutlet weak var districtLabel: UILabel!
-    @IBOutlet weak var ownerLabel: UILabel!
+    @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
 }
 
-
-struct Cat {
-    let catID: String!
-    let owner: String!
-    let selected : String!
-    let district: String!
+protocol PassCatDataDelegate: class {
+    func acceptCatData(cats: [Cat])
 }
 
-class MainPageViewController: UICollectionViewController{
-   
+class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
+    
     @IBOutlet weak var catsCollectionView: UICollectionView!
     
-    var cats = [Cat]()
-    
+    var mainCats = [Cat]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let databaseRef = FIRDatabase.database().reference()
-        databaseRef.child("Cats").queryOrderedByKey().observeEventType(.ChildAdded , withBlock: {
-            snapshot in
-            let catID = snapshot.key
-            let owner = snapshot.value!["owner"] as! String
-            let selected = snapshot.value!["selected"] as! String
-            let districtNumber = snapshot.value!["district"] as! Int
-            let district = District(rawValue: districtNumber)!.title
-            
-            self.cats.insert(Cat(catID: catID, owner: owner, selected: selected, district: district), atIndex: 0)
-            self.catsCollectionView.reloadData()
-        })
-        
+        let vc = FirebaseDataModel.database
+        vc.delegate = self
+        vc.getCats()
     }
     
+    func acceptCatData(cats: [Cat]){
+        mainCats = cats
+        self.catsCollectionView.reloadData()
+    }
+
+
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    
+
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cats.count
+        return mainCats.count
     }
 
-    
+
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath)
         -> UICollectionViewCell {
-            
-            
+
+
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! Catcell
-            cell.districtLabel.text = cats[indexPath.row].district
-            cell.ownerLabel.text = cats[indexPath.row].owner
-            let catID = cats[indexPath.row].catID
-            if cats[indexPath.row].selected == "image" {
+            cell.districtLabel.text = mainCats[indexPath.row].district
+            cell.sexLabel.text = mainCats[indexPath.row].sex
+            let catID = mainCats[indexPath.row].catID
+            if mainCats[indexPath.row].selected == "image" {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")
                 storageRef.downloadURLWithCompletion { (url, error) -> Void in
                     if (error != nil) {
@@ -81,7 +71,7 @@ class MainPageViewController: UICollectionViewController{
                         cell.imageView.hnk_setImageFromURL(url!)
                     }
                 }
-            }else if cats[indexPath.row].selected == "video" {
+            }else if mainCats[indexPath.row].selected == "video" {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
                 storageRef.downloadURLWithCompletion{ (url, error) -> Void in
                     if error != nil {
@@ -93,18 +83,18 @@ class MainPageViewController: UICollectionViewController{
                         playerViewController.view.frame = cell.catView.frame
                         cell.catView.addSubview(playerViewController.view)
                         self.addChildViewController(playerViewController)
-                        
-                        
-                        
+
+
+
                     }
                 }
             }
-            
-            
+
+
             return cell
-            
+
     }
-    
+
 
 
 }
