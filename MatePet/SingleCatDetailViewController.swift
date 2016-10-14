@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SingleCatDetailViewController: UIViewController {
     
@@ -22,6 +23,26 @@ class SingleCatDetailViewController: UIViewController {
     @IBOutlet weak var catDistrictLabel: UILabel!
     @IBOutlet weak var catDescription: UILabel!
     
+    @IBAction func ownerMessengerLinkButton(sender: UIButton) {
+        let FBmessengerLink = "http://m.me/\(cat.userFacebookID)"
+        
+        let FBURL = NSURL(string: FBmessengerLink)!
+        
+        if UIApplication.sharedApplication().canOpenURL(FBURL) {
+            
+            UIApplication.sharedApplication().openURL(FBURL)
+            
+        } else {
+            
+            let safariVC = SFSafariViewController(URL: FBURL)
+            
+            presentViewController(safariVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    
+//    fb-messenger://user-thread/USER_ID
     
     override func viewDidLoad() {
         super.viewDidLoad()

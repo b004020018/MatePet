@@ -54,20 +54,9 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "ToFilterMainView"{
-            
-            guard let destViewController = segue.destinationViewController as? FilterMainViewController else
-            {
-                fatalError()
-            }
-            destViewController.delegate = self
-        }
-    }
-    
     var receiveCats = [Cat]()
     var searchCats = [Cat]()
+    var passCat:Cat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,8 +156,39 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
             
             return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        passCat = searchCats[indexPath.row]
+        self.performSegueWithIdentifier("SearchToSingleCatView", sender: self)
+    }
 
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let segueIdentifier = segue.identifier else { fatalError() }
+        
+        switch segueIdentifier {
+            case "ToFilterMainView":
+            guard let destViewController = segue.destinationViewController as? FilterMainViewController else
+            {
+                fatalError()
+            }
+            destViewController.delegate = self
+            
+            case "SearchToSingleCatView":
+            
+            guard let destViewController = segue.destinationViewController as? SingleCatDetailViewController else
+            {
+                fatalError()
+            }
+            
+            destViewController.cat = passCat
+            
+            default: break
+            
+        }
+        
+        
+    }
+    
     
 }
 

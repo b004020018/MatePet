@@ -96,7 +96,6 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         passCat = mainCats[indexPath.row]
-        print(passCat)
         self.performSegueWithIdentifier("ToSingleCatView", sender: self)
     }
     
