@@ -30,6 +30,7 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
     @IBOutlet weak var catsCollectionView: UICollectionView!
     
     var mainCats = [Cat]()
+    var passCat:Cat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +42,6 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
     func acceptCatData(cats: [Cat]){
         mainCats = cats
         self.catsCollectionView.reloadData()
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "ToSearchView"{
-            
-            guard let destViewController = segue.destinationViewController as? QueryViewController else
-            {
-                fatalError()
-            }
-            destViewController.receiveCats = mainCats
-        }
     }
 
 
@@ -104,6 +93,40 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
             return cell
 
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        passCat = mainCats[indexPath.row]
+        print(passCat)
+        self.performSegueWithIdentifier("ToSingleCatView", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let segueIdentifier = segue.identifier else { fatalError() }
+        
+        switch segueIdentifier {
+            
+            case "ToSearchView":
+            
+            guard let destViewController = segue.destinationViewController as? QueryViewController else
+            {
+                fatalError()
+            }
+            destViewController.receiveCats = mainCats
+            
+            case "ToSingleCatView":
+            
+                guard let destViewController = segue.destinationViewController as? SingleCatDetailViewController else
+                {
+                    fatalError()
+                }
+            
+                destViewController.cat = passCat
+
+            default: break
+        }
+    
+    }
+    
 
 
 

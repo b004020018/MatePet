@@ -13,6 +13,7 @@
 		A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */; };
 		A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */; };
 		A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070419D1D9AD17900674297 /* FBLoginViewController.swift */; };
+		A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */; };
 		A0A0F8D41DA6545C00609C5C /* FilterDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */; };
 		A0C155221DAF780200483086 /* PersonalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C155211DAF780200483086 /* PersonalPageViewController.swift */; };
 		A0D2C9D01DA6B7C20080B73B /* FilterMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */; };
@@ -34,6 +35,7 @@
 		A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseEnum.swift; sourceTree = "<group>"; };
 		A070419D1D9AD17900674297 /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
+		A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCatDetailViewController.swift; sourceTree = "<group>"; };
 		A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDataTableViewController.swift; sourceTree = "<group>"; };
 		A0C155211DAF780200483086 /* PersonalPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalPageViewController.swift; sourceTree = "<group>"; };
 		A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterMainViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				A0D2C9CF1DA6B7C20080B73B /* FilterMainViewController.swift */,
 				A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */,
 				A04319891DA78E5F00698EA1 /* QueryViewController.swift */,
+				A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */,
 				A0E7129C1D99618700E60826 /* Main.storyboard */,
 			);
 			path = MatePet;
@@ -256,6 +259,7 @@
 				A0E7129B1D99618700E60826 /* AddNewDataViewController.swift in Sources */,
 				A0E712991D99618700E60826 /* AppDelegate.swift in Sources */,
 				A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */,
+				A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */,
 				A0C155221DAF780200483086 /* PersonalPageViewController.swift in Sources */,
 				A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */,
 				A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */,
