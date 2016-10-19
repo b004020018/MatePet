@@ -8,19 +8,6 @@
 
 import Foundation
 
-struct Cat {
-    let catID: String!
-    let owner: String!
-    let district: String!
-    let catCreatedAt: NSDate!
-    let sex: String!
-    let age: String!
-    let colour: String!
-    let description: String!
-    let selected : String!
-    let userFacebookID: String!
-}
-
 
 enum Sexual: String {
     

@@ -16,6 +16,7 @@ class FilterCell: UICollectionViewCell {
     @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var likesCountLabel: UILabel!
     
 }
 
@@ -56,13 +57,14 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
     
     var receiveCats = [Cat]()
     var searchCats = [Cat]()
-    var passCat:Cat?
+    var passCat: Cat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchCats = receiveCats
         self.searchColloectionView.reloadData()
     }
+    
     
     
     func acceptData(age: String, sex: String, colour: String, district: String){
@@ -102,9 +104,17 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
                 self.searchColloectionView.reloadData()
             })
         case .fromMostLike:
-            break
+            let result = searchCats.sort({ $0.likesCount > $1.likesCount })
+            searchCats = result
+            dispatch_async(dispatch_get_main_queue(),{
+                self.searchColloectionView.reloadData()
+            })
         case .fromLeastLike:
-            break
+            let result = searchCats.sort({ $0.likesCount < $1.likesCount })
+            searchCats = result
+            dispatch_async(dispatch_get_main_queue(),{
+                self.searchColloectionView.reloadData()
+            })
         }
     }
     
@@ -124,6 +134,7 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as! FilterCell
             cell.districtLabel.text = searchCats[indexPath.row].district
             cell.sexLabel.text = searchCats[indexPath.row].sex
+            cell.likesCountLabel.text = String(searchCats[indexPath.row].likesCount)
             let catID = searchCats[indexPath.row].catID
             if searchCats[indexPath.row].selected == "image" {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")
@@ -186,9 +197,7 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
             
         }
         
-        
     }
-    
     
 }
 

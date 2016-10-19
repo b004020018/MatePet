@@ -18,32 +18,34 @@ class Catcell: UICollectionViewCell {
     @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var likesCountLabel: UILabel!
     
 }
 
-protocol PassCatDataDelegate: class {
-    func acceptCatData(cats: [Cat])
+protocol CatManagerDelegate: class {
+    
+    func manager(manager: LocalDataModel, didGetCats cats: [Cat])
+    
 }
 
-class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
+class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     
     @IBOutlet weak var catsCollectionView: UICollectionView!
     
     var mainCats = [Cat]()
-    var passCat:Cat?
+    var passCat: Cat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let vc = FirebaseDataModel.database
+        let vc = LocalDataModel.shared
         vc.delegate = self
-        vc.getCats()
+        vc.fetchCats()
     }
     
-    func acceptCatData(cats: [Cat]){
+    func manager(manager: LocalDataModel, didGetCats cats: [Cat]){
         mainCats = cats
         self.catsCollectionView.reloadData()
     }
-
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -62,6 +64,7 @@ class MainPageViewController: UICollectionViewController, PassCatDataDelegate {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! Catcell
             cell.districtLabel.text = mainCats[indexPath.row].district
             cell.sexLabel.text = mainCats[indexPath.row].sex
+            cell.likesCountLabel.text = String(mainCats[indexPath.row].likesCount)
             let catID = mainCats[indexPath.row].catID
             if mainCats[indexPath.row].selected == "image" {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")

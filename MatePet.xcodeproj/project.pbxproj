@@ -11,7 +11,10 @@
 		A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */; };
 		A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04319891DA78E5F00698EA1 /* QueryViewController.swift */; };
 		A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */; };
+		A0438CFC1DB4B84F00025820 /* LocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */; };
+		A0438CFE1DB4DB3800025820 /* PersonalLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */; };
 		A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */; };
+		A06A8B7C1DB71BD100648E04 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A8B7B1DB71BD100648E04 /* CustomTabBarController.swift */; };
 		A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070419D1D9AD17900674297 /* FBLoginViewController.swift */; };
 		A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */; };
 		A0A0F8D41DA6545C00609C5C /* FilterDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */; };
@@ -24,6 +27,8 @@
 		A0E712A31D99618700E60826 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E712A11D99618700E60826 /* LaunchScreen.storyboard */; };
 		A0E860B21D9E18F200A8A90F /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */; };
 		A0EE83291DA20619005971C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0EE83281DA20619005971C6 /* GoogleService-Info.plist */; };
+		A0F0D0851DB505EB0018F15E /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F0D0841DB505EB0018F15E /* PersonalViewController.swift */; };
+		A0F0D0871DB5095A0018F15E /* PersonalOwnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F0D0861DB5095A0018F15E /* PersonalOwnsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +38,10 @@
 		A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataModel.swift; sourceTree = "<group>"; };
 		A04319891DA78E5F00698EA1 /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
+		A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataModel.swift; sourceTree = "<group>"; };
+		A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalLikesViewController.swift; sourceTree = "<group>"; };
 		A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseEnum.swift; sourceTree = "<group>"; };
+		A06A8B7B1DB71BD100648E04 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		A070419D1D9AD17900674297 /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCatDetailViewController.swift; sourceTree = "<group>"; };
 		A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterDataTableViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +56,8 @@
 		A0E712A41D99618700E60826 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		A0EE83281DA20619005971C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A0F0D0841DB505EB0018F15E /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		A0F0D0861DB5095A0018F15E /* PersonalOwnsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalOwnsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +124,11 @@
 			children = (
 				A0A95A4F1D9B684F00268685 /* Assistant file */,
 				A070419D1D9AD17900674297 /* FBLoginViewController.swift */,
+				A06A8B7B1DB71BD100648E04 /* CustomTabBarController.swift */,
 				A0C155211DAF780200483086 /* PersonalPageViewController.swift */,
 				A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */,
 				A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */,
+				A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */,
 				A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */,
 				A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */,
 				A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */,
@@ -124,6 +136,9 @@
 				A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */,
 				A04319891DA78E5F00698EA1 /* QueryViewController.swift */,
 				A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */,
+				A0F0D0841DB505EB0018F15E /* PersonalViewController.swift */,
+				A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */,
+				A0F0D0861DB5095A0018F15E /* PersonalOwnsViewController.swift */,
 				A0E7129C1D99618700E60826 /* Main.storyboard */,
 			);
 			path = MatePet;
@@ -253,7 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0438CFC1DB4B84F00025820 /* LocalDataModel.swift in Sources */,
+				A0F0D0851DB505EB0018F15E /* PersonalViewController.swift in Sources */,
+				A0438CFE1DB4DB3800025820 /* PersonalLikesViewController.swift in Sources */,
 				A0E860B21D9E18F200A8A90F /* MainPageViewController.swift in Sources */,
+				A0F0D0871DB5095A0018F15E /* PersonalOwnsViewController.swift in Sources */,
 				A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */,
 				A0A0F8D41DA6545C00609C5C /* FilterDataTableViewController.swift in Sources */,
 				A0E7129B1D99618700E60826 /* AddNewDataViewController.swift in Sources */,
@@ -261,6 +280,7 @@
 				A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */,
 				A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */,
 				A0C155221DAF780200483086 /* PersonalPageViewController.swift in Sources */,
+				A06A8B7C1DB71BD100648E04 /* CustomTabBarController.swift in Sources */,
 				A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */,
 				A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */,
 				A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */,
