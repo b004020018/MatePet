@@ -37,7 +37,6 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         self.receiveCats = LocalDataModel.shared.cats
         let user = (FIRAuth.auth()?.currentUser?.uid)!
-        
         self.OwnsCats = []
         for catItem in self.receiveCats {
                 if catItem.owner == user {

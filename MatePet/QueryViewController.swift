@@ -61,6 +61,7 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        receiveCats = LocalDataModel.shared.cats
         searchCats = receiveCats
         self.searchColloectionView.reloadData()
     }

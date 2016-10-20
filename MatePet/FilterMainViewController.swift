@@ -15,7 +15,6 @@ class FilterMainViewController: UIViewController {
     
     @IBAction func closeButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        print("cancel")
     }
     
     

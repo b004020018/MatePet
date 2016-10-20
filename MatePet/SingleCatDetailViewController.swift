@@ -26,10 +26,15 @@ class SingleCatDetailViewController: UIViewController {
     @IBOutlet weak var likesCountLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     
+    @IBAction func closeButton(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     
     @IBAction func ownerMessengerLinkButton(sender: UIButton) {
-        let FBmessengerLink = "http://m.me/\(cat.userFacebookID)"
+        let userFacebookID = facebookData.stringForKey("userFacebookID")!
+        let FBmessengerLink = "http://m.me/\(userFacebookID)"
         
         let FBURL = NSURL(string: FBmessengerLink)!
         
@@ -69,7 +74,7 @@ class SingleCatDetailViewController: UIViewController {
         
     }
     
-    var snapshotExist = true
+    var snapshotExist = false
     var likeKey = ""
     
 //    fb-messenger://user-thread/USER_ID
@@ -88,31 +93,33 @@ class SingleCatDetailViewController: UIViewController {
         databaseRef.queryOrderedByChild("postID").queryEqualToValue(cat.catID).observeEventType(.Value , withBlock: { snapshot in
             if snapshot.exists() {
                 for item in [snapshot.value] {
-                guard let itemDictionary = item as? NSDictionary else {
-                    fatalError()
-                }
-                guard let firebaseItemKey = itemDictionary.allKeys as? [String] else {
+                    guard let itemDictionary = item as? NSDictionary else {
                         fatalError()
-                }
-                
-                guard let firebaseItemValue = itemDictionary.allValues as? [NSDictionary] else {
+                    }
+                    guard let firebaseItemKey = itemDictionary.allKeys as? [String] else {
                         fatalError()
-                }
+                    }
+                    
+                    guard let firebaseItemValue = itemDictionary.allValues as? [NSDictionary] else {
+                        fatalError()
+                    }
                     
                     for (index,item) in firebaseItemValue.enumerate() {
                         let likePersonID = item["likePersonID"] as! String
                         
                         if likePersonID  == self.userFirebaseID {
-                        self.likeKey = firebaseItemKey[index]
+                            self.likeKey = firebaseItemKey[index]
+                            self.likeButton.setImage(UIImage(named: "like")!.imageWithRenderingMode(.Automatic), forState: .Normal)
+                            self.snapshotExist = true
+                        } else {
+                            self.likeButton.setImage(UIImage(named: "unlike")!.imageWithRenderingMode(.Automatic), forState: .Normal)
+                            self.snapshotExist = false
                         }
                     }
                 }
-                
-                self.likeButton.setImage(UIImage(named: "like")!.imageWithRenderingMode(.Automatic), forState: .Normal)
-                self.snapshotExist = true
             } else {
-              self.likeButton.setImage(UIImage(named: "unlike")!.imageWithRenderingMode(.Automatic), forState: .Normal)
-                self.snapshotExist = false
+            self.likeButton.setImage(UIImage(named: "unlike")!.imageWithRenderingMode(.Automatic), forState: .Normal)
+            self.snapshotExist = false
             }
         })
     }

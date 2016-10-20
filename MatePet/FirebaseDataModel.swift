@@ -23,19 +23,19 @@ struct Cat {
     let likesCount:Int!
 }
 
-
+protocol PassCatDataDelegate: class {
+    func acceptCatData(cats: [Cat])
+}
 
 class FirebaseDataModel {
-    static let database = FirebaseDataModel()
+//    static let database = FirebaseDataModel()
     
-    var cats = [Cat]()
     weak var delegate : PassCatDataDelegate?
     func getCats() {
         let databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Cats").queryOrderedByKey().observeEventType(.Value , withBlock: { snapshot in
             if snapshot.exists() {
-                
-                self.cats = []
+                var cats = [Cat]()
                 
                 for item in [snapshot.value] {
                     // item = 第一隻貓
@@ -96,10 +96,9 @@ class FirebaseDataModel {
                                     likesCount = 0
                             }
                             
-                            self.cats.append(Cat(catID: catID, owner: catOwner, district: catDistrict, catCreatedAt:catCreatedAt, sex: catSex, age: catAge, colour: catColour, description: catDescription, selected: catSelected, userFacebookID: catuserFacebookID, likesCount: likesCount))
-                            self.delegate?.acceptCatData(self.cats)
+                            cats.append(Cat(catID: catID, owner: catOwner, district: catDistrict, catCreatedAt:catCreatedAt, sex: catSex, age: catAge, colour: catColour, description: catDescription, selected: catSelected, userFacebookID: catuserFacebookID, likesCount: likesCount))
+                            self.delegate?.acceptCatData(cats)
                         })
-                        
                     }
                 }
             }

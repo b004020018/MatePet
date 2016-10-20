@@ -105,17 +105,7 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let segueIdentifier = segue.identifier else { fatalError() }
         
-        switch segueIdentifier {
-            
-            case "ToSearchView":
-            
-            guard let destViewController = segue.destinationViewController as? QueryViewController else
-            {
-                fatalError()
-            }
-            destViewController.receiveCats = mainCats
-            
-            case "ToSingleCatView":
+        if segueIdentifier == "ToSingleCatView" {
             
                 guard let destViewController = segue.destinationViewController as? SingleCatDetailViewController else
                 {
@@ -124,7 +114,6 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
             
                 destViewController.cat = passCat
 
-            default: break
         }
     
     }

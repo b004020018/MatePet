@@ -8,9 +8,6 @@
 
 import UIKit
 
-protocol PassCatDataDelegate: class {
-    func acceptCatData(cats: [Cat])
-}
 
 class  LocalDataModel: PassCatDataDelegate {
     
@@ -19,7 +16,7 @@ class  LocalDataModel: PassCatDataDelegate {
     weak var delegate: CatManagerDelegate?
 
     
-     var cats: [Cat] = []
+     var cats: [Cat] = [] { didSet{ print("Array reload") }}
     
     
     func acceptCatData(cats: [Cat]){
@@ -28,8 +25,9 @@ class  LocalDataModel: PassCatDataDelegate {
     }
     
     func fetchCats() {
-        FirebaseDataModel.database.delegate = self
-        FirebaseDataModel.database.getCats()
+        let a = FirebaseDataModel()
+        a.delegate = self
+        a.getCats()
     }
     
     

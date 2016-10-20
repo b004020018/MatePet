@@ -20,7 +20,7 @@ class PersonalLikesTableCell: UITableViewCell {
 }
 
 
-class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CatManagerDelegate {
     
     @IBOutlet weak var personalLikesTableView: UITableView!
     
@@ -32,7 +32,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.receiveCats = LocalDataModel.shared.cats
+        self.receiveCats = LocalDataModel.shared.cats 
         let databaseRef = FIRDatabase.database().reference().child("Likes")
         let user = (FIRAuth.auth()?.currentUser?.uid)!
         databaseRef.queryOrderedByChild("likePersonID").queryEqualToValue(user).observeEventType(.Value , withBlock: { snapshot in
@@ -62,6 +62,14 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
             }
     self.personalLikesTableView.reloadData()
     })
+    }
+    
+    func manager(manager: LocalDataModel, didGetCats cats: [Cat]){
+        receiveCats = cats
+        
+        
+        
+//        self.catsCollectionView.reloadData()
     }
     
     
