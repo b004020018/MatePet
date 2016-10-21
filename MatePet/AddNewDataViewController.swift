@@ -22,6 +22,13 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var addVideoView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var addDataTextView: UITextView!
+    @IBAction func closeButton(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let parent = self.presentingViewController as? UITabBarController
+        parent?.selectedIndex = 0
+    }
+    
+    
     @IBAction func saveNewDataButton(sender: UIButton) {
     
     let facebookData = NSUserDefaults.standardUserDefaults()
@@ -36,7 +43,8 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         "colour" : selectedDataDetail.colour,
         "description" : selectedDataDetail.description,
         "selected" : selected,
-        "userFacebookID": userFacebookID]
+        "userFacebookID": userFacebookID,
+        "likesCount": 0 ]
         let rootRef = FIRDatabase.database().reference()
         let autoID = rootRef.child("Cats").childByAutoId().key
         rootRef.child("Cats").child(autoID).setValue(cat)

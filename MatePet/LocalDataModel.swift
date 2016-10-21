@@ -25,9 +25,9 @@ class  LocalDataModel: PassCatDataDelegate {
     }
     
     func fetchCats() {
-        let a = FirebaseDataModel()
-        a.delegate = self
-        a.getCats()
+        let firebaseDataModel = FirebaseDataModel()
+        firebaseDataModel.delegate = self
+        firebaseDataModel.getCats()
     }
     
     

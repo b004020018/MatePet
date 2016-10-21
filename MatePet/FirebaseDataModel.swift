@@ -10,17 +10,17 @@ import UIKit
 import Firebase
 
 struct Cat {
-    let catID: String!
-    let owner: String!
-    let district: String!
-    let catCreatedAt: NSDate!
-    let sex: String!
-    let age: String!
-    let colour: String!
-    let description: String!
-    let selected : String!
-    let userFacebookID: String!
-    let likesCount:Int!
+    let catID: String
+    let owner: String
+    let district: String
+    let catCreatedAt: NSDate
+    let sex: String
+    let age: String
+    let colour: String
+    let description: String
+    let selected : String
+    let userFacebookID: String
+    let likesCount:Int
 }
 
 protocol PassCatDataDelegate: class {
@@ -28,7 +28,6 @@ protocol PassCatDataDelegate: class {
 }
 
 class FirebaseDataModel {
-//    static let database = FirebaseDataModel()
     
     weak var delegate : PassCatDataDelegate?
     func getCats() {
@@ -77,30 +76,13 @@ class FirebaseDataModel {
                         
                         let catuserFacebookID = item["userFacebookID"] as! String
                         
-                        var likesCount: Int!
+                        let likesCount = item["likesCount"] as! Int
                 
-               
-                        databaseRef.child("Likes").queryOrderedByChild("postID").queryEqualToValue(catID).observeEventType(.Value , withBlock: { snapshot in
-                            if snapshot.exists() {
-                                for item in [snapshot.value] {
-                                    guard let itemDictionary = item as? NSDictionary else {
-                                        fatalError()
-                                    }
-                                    guard let ItemKey = itemDictionary.allKeys as? [String] else {
-                                        fatalError()
-                                    }
-                                    likesCount = ItemKey.count
-
-                                }
-                            } else {
-                                    likesCount = 0
-                            }
-                            
-                            cats.append(Cat(catID: catID, owner: catOwner, district: catDistrict, catCreatedAt:catCreatedAt, sex: catSex, age: catAge, colour: catColour, description: catDescription, selected: catSelected, userFacebookID: catuserFacebookID, likesCount: likesCount))
-                            self.delegate?.acceptCatData(cats)
-                        })
+                        cats.append(Cat(catID: catID, owner: catOwner, district: catDistrict, catCreatedAt:catCreatedAt, sex: catSex, age: catAge, colour: catColour, description: catDescription, selected: catSelected, userFacebookID: catuserFacebookID, likesCount: likesCount))
+    
                     }
                 }
+            self.delegate?.acceptCatData(cats)
             }
         })
         

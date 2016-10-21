@@ -193,6 +193,7 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
             }
             
             destViewController.cat = passCat
+            destViewController.buttonHidden = true
             
             default: break
             

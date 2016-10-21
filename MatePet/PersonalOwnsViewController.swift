@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import MediaPlayer
+import AVKit
 
 class PersonalOwnsTableCell: UITableViewCell {
     
@@ -16,6 +18,7 @@ class PersonalOwnsTableCell: UITableViewCell {
     @IBOutlet weak var catColour: UILabel!
     @IBOutlet weak var catDistrict: UILabel!
     @IBOutlet weak var catView: UIView!
+    @IBOutlet weak var catImageView: UIImageView!
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
@@ -33,17 +36,20 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
     var postsID = [String]()
     var passCat: Cat!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
         self.receiveCats = LocalDataModel.shared.cats
         let user = (FIRAuth.auth()?.currentUser?.uid)!
         self.OwnsCats = []
         for catItem in self.receiveCats {
-                if catItem.owner == user {
-                    self.OwnsCats.append(catItem)
-                }
+            if catItem.owner == user {
+                self.OwnsCats.append(catItem)
             }
+        }
         self.personalOwnsTableView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
     }
     
@@ -60,6 +66,32 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
         cell.catAge.text = OwnsCats[indexPath.row].age
 //        cell.deleteButton
         cell.deleteButton.addTarget(self, action: #selector(self.deletePost(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        let catID = OwnsCats[indexPath.row].catID
+        if OwnsCats[indexPath.row].selected == "image" {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")
+            storageRef.downloadURLWithCompletion { (url, error) -> Void in
+                if (error != nil) {
+                    print("error")
+                } else {
+                    cell.catImageView.hnk_setImageFromURL(url!)
+                }
+            }
+        }else if OwnsCats[indexPath.row].selected == "video" {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
+            storageRef.downloadURLWithCompletion{ (url, error) -> Void in
+                if error != nil {
+                    print("error")
+                } else {
+                    let player = AVPlayer(URL: url!)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    playerViewController.view.frame = cell.catView.frame
+                    cell.catView.addSubview(playerViewController.view)
+                    self.addChildViewController(playerViewController)
+                    
+                }
+            }
+        }
         
         
         return cell
@@ -97,6 +129,7 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             destViewController.cat = passCat
+            destViewController.buttonHidden = true
             
             
         }

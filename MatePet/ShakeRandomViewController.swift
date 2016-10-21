@@ -30,6 +30,7 @@ class ShakeRandomViewController: UIViewController {
         if motion == .MotionShake {
             guard let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SingleCatDetailView") as? SingleCatDetailViewController else {fatalError()}
             vc.cat = receiveCats[randomNumber]
+            vc.buttonHidden = false
             self.presentViewController(vc, animated: true, completion: nil)
         }
     }

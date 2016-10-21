@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FF7D45B7FAE6364C5493941 /* Pods_MatePet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */; };
 		A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */; };
+		A03484831DB9FEA00009A339 /* ToAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03484821DB9FEA00009A339 /* ToAddViewController.swift */; };
 		A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04319891DA78E5F00698EA1 /* QueryViewController.swift */; };
 		A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */; };
 		A0438CFC1DB4B84F00025820 /* LocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */; };
@@ -37,6 +38,7 @@
 		63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MatePet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99030253C0EA6A5826CB844B /* Pods-MatePet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatePet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatePet/Pods-MatePet.debug.xcconfig"; sourceTree = "<group>"; };
 		A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataModel.swift; sourceTree = "<group>"; };
+		A03484821DB9FEA00009A339 /* ToAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToAddViewController.swift; sourceTree = "<group>"; };
 		A04319891DA78E5F00698EA1 /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataModel.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */,
 				A0F0D0861DB5095A0018F15E /* PersonalOwnsViewController.swift */,
 				A0E7129C1D99618700E60826 /* Main.storyboard */,
+				A03484821DB9FEA00009A339 /* ToAddViewController.swift */,
 			);
 			path = MatePet;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */,
 				A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */,
 				A0D2C9D01DA6B7C20080B73B /* FilterMainViewController.swift in Sources */,
+				A03484831DB9FEA00009A339 /* ToAddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

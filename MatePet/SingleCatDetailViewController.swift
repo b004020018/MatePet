@@ -9,10 +9,13 @@
 import UIKit
 import Firebase
 import SafariServices
+import MediaPlayer
+import AVKit
 
 class SingleCatDetailViewController: UIViewController {
     
     var cat: Cat!
+    var buttonHidden: Bool!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -25,6 +28,9 @@ class SingleCatDetailViewController: UIViewController {
     @IBOutlet weak var catDescription: UILabel!
     @IBOutlet weak var likesCountLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var catImageView: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
+    
     
     @IBAction func closeButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -64,11 +70,17 @@ class SingleCatDetailViewController: UIViewController {
             "likePersonID" : userFirebaseID]
         let autoID = rootRef.child("Likes").childByAutoId().key
         rootRef.child("Likes").child(autoID).setValue(like)
+        
+        let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount + 1]
+        rootRef.child("Cats").updateChildValues(childUpdates)
         }else {
         
         let likeID = likeKey
         rootRef.child("Likes").child(likeID).removeValue()
-    
+        
+        let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount - 1]
+        rootRef.child("Cats").updateChildValues(childUpdates)
+
         }
 
         
@@ -81,6 +93,11 @@ class SingleCatDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if buttonHidden == true {
+            self.closeButton.hidden = true
+        }else {
+            self.closeButton.hidden = false
+        }
         catAgeLabel.text = cat.age
         catColourLabel.text = cat.colour
         catSexLabel.text = cat.sex
@@ -88,6 +105,33 @@ class SingleCatDetailViewController: UIViewController {
         catDescription.text = cat.description
         likesCountLabel.text = String(cat.likesCount)
         userFirebaseID = facebookData.stringForKey("userFirebaseID")
+        if cat.selected == "image" {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).jpg")
+            storageRef.downloadURLWithCompletion { (url, error) -> Void in
+                if (error != nil) {
+                    print("error")
+                } else {
+                    self.catImageView.hnk_setImageFromURL(url!)
+                }
+            }
+        }else if cat.selected == "video" {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).mov")
+            storageRef.downloadURLWithCompletion{ (url, error) -> Void in
+                if error != nil {
+                    print("error")
+                } else {
+                    let player = AVPlayer(URL: url!)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    playerViewController.view.frame = self.catView.frame
+                    self.catView.addSubview(playerViewController.view)
+                    self.addChildViewController(playerViewController)
+                    
+                }
+            }
+        }
+        
+        
         
         let databaseRef = FIRDatabase.database().reference().child("Likes")
         databaseRef.queryOrderedByChild("postID").queryEqualToValue(cat.catID).observeEventType(.Value , withBlock: { snapshot in
@@ -111,6 +155,7 @@ class SingleCatDetailViewController: UIViewController {
                             self.likeKey = firebaseItemKey[index]
                             self.likeButton.setImage(UIImage(named: "like")!.imageWithRenderingMode(.Automatic), forState: .Normal)
                             self.snapshotExist = true
+                            return
                         } else {
                             self.likeButton.setImage(UIImage(named: "unlike")!.imageWithRenderingMode(.Automatic), forState: .Normal)
                             self.snapshotExist = false

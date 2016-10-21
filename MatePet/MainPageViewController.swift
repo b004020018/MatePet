@@ -113,6 +113,9 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
                 }
             
                 destViewController.cat = passCat
+                destViewController.buttonHidden = true
+                
+                
 
         }
     

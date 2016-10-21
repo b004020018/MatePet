@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import MediaPlayer
+import AVKit
 
 class PersonalLikesTableCell: UITableViewCell {
     
@@ -16,11 +18,13 @@ class PersonalLikesTableCell: UITableViewCell {
     @IBOutlet weak var catColour: UILabel!
     @IBOutlet weak var catDistrict: UILabel!
     @IBOutlet weak var catView: UIView!
+    @IBOutlet weak var catImageView: UIImageView!
+    
 
 }
 
 
-class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CatManagerDelegate {
+class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var personalLikesTableView: UITableView!
     
@@ -64,14 +68,6 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
     })
     }
     
-    func manager(manager: LocalDataModel, didGetCats cats: [Cat]){
-        receiveCats = cats
-        
-        
-        
-//        self.catsCollectionView.reloadData()
-    }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return likesCats.count
@@ -83,6 +79,34 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.catSex.text = likesCats[indexPath.row].sex
         cell.catColour.text = likesCats[indexPath.row].colour
         cell.catAge.text = likesCats[indexPath.row].age
+        let catID = likesCats[indexPath.row].catID
+        if likesCats[indexPath.row].selected == "image" {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")
+            storageRef.downloadURLWithCompletion { (url, error) -> Void in
+                if (error != nil) {
+                    print("error")
+                } else {
+                    cell.catImageView.hnk_setImageFromURL(url!)
+                }
+            }
+        }else if likesCats[indexPath.row].selected == "video" {
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
+            storageRef.downloadURLWithCompletion{ (url, error) -> Void in
+                if error != nil {
+                    print("error")
+                } else {
+                    let player = AVPlayer(URL: url!)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    playerViewController.view.frame = cell.catView.frame
+                    cell.catView.addSubview(playerViewController.view)
+                    self.addChildViewController(playerViewController)
+                    
+                }
+            }
+        }
+
+        
         
         return cell
         
@@ -104,6 +128,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
             }
             
             destViewController.cat = passCat
+            destViewController.buttonHidden = true
             
             
         }
