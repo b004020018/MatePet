@@ -40,7 +40,7 @@
 		99030253C0EA6A5826CB844B /* Pods-MatePet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatePet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatePet/Pods-MatePet.debug.xcconfig"; sourceTree = "<group>"; };
 		A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataModel.swift; sourceTree = "<group>"; };
 		A03484821DB9FEA00009A339 /* ToAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToAddViewController.swift; sourceTree = "<group>"; };
-		A03484841DBA00A20009A339 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = Assets.xcassets/.gitignore; sourceTree = "<group>"; };
+		A03484841DBA00A20009A339 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = MatePet/Assets.xcassets/.gitignore; sourceTree = "<group>"; };
 		A04319891DA78E5F00698EA1 /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		A043198B1DA7AB0100698EA1 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataModel.swift; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 		A0A95A4F1D9B684F00268685 /* Assistant file */ = {
 			isa = PBXGroup;
 			children = (
-				A03484841DBA00A20009A339 /* .gitignore */,
 				A0EE83281DA20619005971C6 /* GoogleService-Info.plist */,
 				A0E712A41D99618700E60826 /* Info.plist */,
 				A0E712A11D99618700E60826 /* LaunchScreen.storyboard */,
@@ -111,6 +110,7 @@
 		A0E7128C1D99618700E60826 = {
 			isa = PBXGroup;
 			children = (
+				A03484841DBA00A20009A339 /* .gitignore */,
 				A0E712971D99618700E60826 /* MatePet */,
 				A0E712961D99618700E60826 /* Products */,
 				534627317DFB37B36828DF3B /* Pods */,
