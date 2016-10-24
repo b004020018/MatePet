@@ -19,6 +19,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var localVideoPath: NSURL?
     var selected: String!
     
+    @IBOutlet weak var dataUpdateProgressView: UIProgressView!
     @IBOutlet weak var addVideoView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var addDataTextView: UITextView!
@@ -30,8 +31,9 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     
     @IBAction func saveNewDataButton(sender: UIButton) {
-    
-    let facebookData = NSUserDefaults.standardUserDefaults()
+        
+        self.dataUpdateProgressView.hidden = false
+        let facebookData = NSUserDefaults.standardUserDefaults()
         guard let userFacebookID = facebookData.stringForKey("userFacebookID") else { fatalError() }
         //store in database
         let cat: [String : AnyObject] = [
@@ -52,27 +54,45 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //store in firebase
         
         if let localVideoPath = localVideoPath {
-            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(autoID).mov")
+            let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).mov")
             let uploadMetadata = FIRStorageMetadata()
             uploadMetadata.contentType = "video/quicktime"
-            storageRef.putFile(localVideoPath, metadata: uploadMetadata) { (metadata, error) in
+            let uploadTask = storageRef.putFile(localVideoPath, metadata: uploadMetadata) { (metadata, error) in
                 if (error != nil) {
                     print("Got error")
                 } else {
-//                    print("upload complete metadata: \(metadata)")
-//                    print("your download URL is: \(metadata?.downloadURL())")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    let parent = self.presentingViewController as? UITabBarController
+                    parent?.selectedIndex = 0
                 }
             }
+            uploadTask.observeStatus(.Progress){(snapshop) in
+                guard let progress = snapshop.progress else {
+                    print("prgress bar error")
+                    return
+                }
+                self.dataUpdateProgressView.progress = Float(progress.fractionCompleted)
+            }
+            
         } else if let imagedata = imagedata {
-            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(autoID).jpg")
+            let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).jpg")
             let uploadMetadata = FIRStorageMetadata()
             uploadMetadata.contentType = "image/jpeg"
-            storageRef.putData(imagedata, metadata: uploadMetadata) { (metadata, error) in
+            let uploadTask = storageRef.putData(imagedata, metadata: uploadMetadata) { (metadata, error) in
                 if (error != nil) {
                     print("Got error")
                 } else {
-//                    print("upload complete metadata: \(metadata)")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    let parent = self.presentingViewController as? UITabBarController
+                    parent?.selectedIndex = 0
                 }
+            }
+            uploadTask.observeStatus(.Progress){(snapshop) in
+                guard let progress = snapshop.progress else {
+                    print("prgress bar error")
+                    return
+                }
+                self.dataUpdateProgressView.progress = Float(progress.fractionCompleted)
             }
         }
     }
@@ -152,6 +172,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataUpdateProgressView.hidden = true
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
         selectedDataDetail.description = addDataTextView.text

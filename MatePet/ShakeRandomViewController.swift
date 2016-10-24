@@ -14,12 +14,15 @@ class ShakeRandomViewController: UIViewController {
     var randomNumber = 0
     
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
         self.receiveCats = LocalDataModel.shared.cats
         let totalPosts = receiveCats.count
         randomNumber = Int(arc4random_uniform(UInt32(totalPosts) - 1)) + 1
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
     }
     

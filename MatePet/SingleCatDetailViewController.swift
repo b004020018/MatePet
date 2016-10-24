@@ -20,13 +20,13 @@ class SingleCatDetailViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var catView: UIView!
-    @IBOutlet weak var likesQuantity: UILabel!
+   
     @IBOutlet weak var catAgeLabel: UILabel!
     @IBOutlet weak var catSexLabel: UILabel!
     @IBOutlet weak var catColourLabel: UILabel!
     @IBOutlet weak var catDistrictLabel: UILabel!
     @IBOutlet weak var catDescription: UILabel!
-    @IBOutlet weak var likesCountLabel: UILabel!
+    
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var catImageView: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
@@ -103,7 +103,6 @@ class SingleCatDetailViewController: UIViewController {
         catSexLabel.text = cat.sex
         catDistrictLabel.text = cat.district
         catDescription.text = cat.description
-        likesCountLabel.text = String(cat.likesCount)
         userFirebaseID = facebookData.stringForKey("userFirebaseID")
         if cat.selected == "image" {
             let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).jpg")

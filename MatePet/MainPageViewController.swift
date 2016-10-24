@@ -105,18 +105,26 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let segueIdentifier = segue.identifier else { fatalError() }
         
-        if segueIdentifier == "ToSingleCatView" {
+        switch segueIdentifier {
+        case "ToSingleCatView":
+            guard let destViewController = segue.destinationViewController as? SingleCatDetailViewController else
+            {
+                fatalError()
+            }
             
-                guard let destViewController = segue.destinationViewController as? SingleCatDetailViewController else
+            destViewController.cat = passCat
+            destViewController.buttonHidden = true
+
+        case "ToSearchView":
+            
+                guard let destViewController = segue.destinationViewController as? QueryViewController else
                 {
                     fatalError()
                 }
             
-                destViewController.cat = passCat
-                destViewController.buttonHidden = true
-                
-                
-
+                destViewController.receiveCats = mainCats
+            
+        default:break
         }
     
     }

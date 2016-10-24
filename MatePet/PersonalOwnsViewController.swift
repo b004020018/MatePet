@@ -25,8 +25,14 @@ class PersonalOwnsTableCell: UITableViewCell {
 
 }
 
+protocol OwnsManagerDelegate: class {
+    
+    func manager(manager: LocalDataModel, didGetCats cats: [Cat])
+    
+}
 
-class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, OwnsManagerDelegate {
 
     @IBOutlet weak var personalOwnsTableView: UITableView!
     
@@ -36,8 +42,16 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
     var postsID = [String]()
     var passCat: Cat!
     
-    override func viewWillAppear(animated: Bool) {
-        self.receiveCats = LocalDataModel.shared.cats
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let vc = LocalDataModel.shared
+        vc.ownsdelegate = self
+        vc.fetchCats()
+    }
+    
+    func manager(manager: LocalDataModel, didGetCats cats: [Cat]){
+        self.receiveCats = cats
         let user = (FIRAuth.auth()?.currentUser?.uid)!
         self.OwnsCats = []
         for catItem in self.receiveCats {
@@ -46,11 +60,7 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         self.personalOwnsTableView.reloadData()
-    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
     }
     
     
@@ -104,16 +114,44 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func deletePost(sender: UIButton!) {
+        //delete database
         guard let cell = sender.superview?.superview as? PersonalOwnsTableCell else {
             fatalError()
         }
         let deleteCatPath = self.personalOwnsTableView.indexPathForCell(cell)!.row
-        let deletePostID = OwnsCats[deleteCatPath].catID
+        let deleteCat = OwnsCats[deleteCatPath]
+        let deletePostID = deleteCat.catID
         
         let rootRef = FIRDatabase.database().reference()
         rootRef.child("Cats").child(deletePostID).removeValue()
-        self.personalOwnsTableView.reloadData()
         
+        
+        //delete storage
+        if deleteCat.selected == "image" {
+            let storageRef = FIRStorage.storage().reference().child("Cats/\(deletePostID).jpg")
+            
+            storageRef.deleteWithCompletion { (error) -> Void in
+                if (error != nil) {
+                    print("Delete image error")
+                } else {
+                    self.personalOwnsTableView.reloadData()
+                }
+                
+            }
+        } else {
+            let storageRef = FIRStorage.storage().reference().child("Cats/\(deletePostID).mov")
+            
+            storageRef.deleteWithCompletion { (error) -> Void in
+                if (error != nil) {
+                    print("Delete Video error")
+                } else {
+                    self.personalOwnsTableView.reloadData()
+                }
+                
+                
+            }
+            
+        }
     }
     
     

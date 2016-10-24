@@ -9,7 +9,7 @@ import UIKit
 
 
 class ToAddViewController: UIViewController {
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
         guard let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AddNewDataView") as? AddNewDataViewController else {fatalError()}
         self.presentViewController(vc, animated: true, completion: nil)
     }

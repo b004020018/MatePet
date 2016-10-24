@@ -14,6 +14,7 @@ class  LocalDataModel: PassCatDataDelegate {
     static let shared = LocalDataModel()
     
     weak var delegate: CatManagerDelegate?
+    weak var ownsdelegate: OwnsManagerDelegate?
 
     
      var cats: [Cat] = [] { didSet{ print("Array reload") }}
@@ -21,6 +22,7 @@ class  LocalDataModel: PassCatDataDelegate {
     
     func acceptCatData(cats: [Cat]){
         self.delegate?.manager(self, didGetCats: cats)
+        self.ownsdelegate?.manager(self, didGetCats: cats)
         self.cats = cats
     }
     

@@ -34,8 +34,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
     var postsID = [String]()
     var passCat: Cat!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
         self.receiveCats = LocalDataModel.shared.cats 
         let databaseRef = FIRDatabase.database().reference().child("Likes")
         let user = (FIRAuth.auth()?.currentUser?.uid)!
@@ -67,6 +66,8 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
     self.personalLikesTableView.reloadData()
     })
     }
+    
+
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{

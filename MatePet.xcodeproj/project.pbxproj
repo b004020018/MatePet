@@ -137,6 +137,7 @@
 				A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */,
 				A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */,
 				A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */,
+				A03484821DB9FEA00009A339 /* ToAddViewController.swift */,
 				A0E7129A1D99618700E60826 /* AddNewDataViewController.swift */,
 				A0E860B11D9E18F200A8A90F /* MainPageViewController.swift */,
 				A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */,
@@ -148,7 +149,6 @@
 				A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */,
 				A0F0D0861DB5095A0018F15E /* PersonalOwnsViewController.swift */,
 				A0E7129C1D99618700E60826 /* Main.storyboard */,
-				A03484821DB9FEA00009A339 /* ToAddViewController.swift */,
 			);
 			path = MatePet;
 			sourceTree = "<group>";
