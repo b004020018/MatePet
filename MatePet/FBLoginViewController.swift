@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Crashlytics
 
 class FBLoginViewController: UIViewController {
     @IBAction func FBLoginButton(sender: UIButton) {
@@ -30,6 +31,7 @@ class FBLoginViewController: UIViewController {
                     
                     userDefault.setValue(user.uid, forKey: "userFirebaseID")
                     userDefault.setValue(user.displayName, forKey: "userName")
+                    userDefault.setValue(user.email, forKey: "userName")
                     userDefault.setURL(user.photoURL, forKey: "userPhoto")
                     userDefault.synchronize()
                     
@@ -43,7 +45,6 @@ class FBLoginViewController: UIViewController {
             }
         })
     }
-    
     
 }
 

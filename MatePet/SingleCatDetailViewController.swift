@@ -64,23 +64,39 @@ class SingleCatDetailViewController: UIViewController {
     
     @IBAction func LikeButton(sender: UIButton) {
         let rootRef = FIRDatabase.database().reference()
+        
         if snapshotExist == false {
-        let like: [String : AnyObject] = [
-            "postID" : cat.catID,
-            "likePersonID" : userFirebaseID]
-        let autoID = rootRef.child("Likes").childByAutoId().key
-        rootRef.child("Likes").child(autoID).setValue(like)
-        
-        let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount + 1]
-        rootRef.child("Cats").updateChildValues(childUpdates)
+            let like: [String : AnyObject] = [
+                "postID" : cat.catID,
+                "likePersonID" : userFirebaseID]
+            let autoID = rootRef.child("Likes").childByAutoId().key
+            rootRef.child("Likes").child(autoID).setValue(like)
+            
+            let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount + 1]
+            rootRef.child("Cats").updateChildValues(childUpdates)
+            
+            guard let n: Int = (self.navigationController?.viewControllers.count) else {
+                print("can't get navigationController?.viewControllers.count")
+                return
+            }
+            if let presentVC = self.navigationController?.viewControllers[n-2] as? QueryViewController {
+                presentVC.acceptLikesCount(cat.catID, likesCount: cat.likesCount + 1)
+            }
         }else {
-        
-        let likeID = likeKey
-        rootRef.child("Likes").child(likeID).removeValue()
-        
-        let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount - 1]
-        rootRef.child("Cats").updateChildValues(childUpdates)
-
+            
+            let likeID = likeKey
+            rootRef.child("Likes").child(likeID).removeValue()
+            
+            let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount - 1]
+            rootRef.child("Cats").updateChildValues(childUpdates)
+            
+            guard let n: Int = (self.navigationController?.viewControllers.count) else {
+                print("can't get navigationController?.viewControllers.count")
+                return
+            }
+            if let presentVC = self.navigationController?.viewControllers[n-2] as? QueryViewController {
+                presentVC.acceptLikesCount(cat.catID, likesCount: cat.likesCount - 1)
+            }
         }
 
         

@@ -20,7 +20,7 @@ struct Cat {
     let description: String
     let selected : String
     let userFacebookID: String
-    let likesCount:Int
+    var likesCount:Int
 }
 
 protocol PassCatDataDelegate: class {

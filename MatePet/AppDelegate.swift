@@ -11,6 +11,8 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FBSDKShareKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        Fabric.with([Crashlytics.self])
+        self.logUser()
+
         return true
     }
 
@@ -49,6 +54,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    func logUser() {
+        let facebookData = NSUserDefaults.standardUserDefaults()
+        let userName = facebookData.stringForKey("userName")
+        let userFirebaseID = facebookData.stringForKey("userFirebaseID")
+        let userEmail = facebookData.stringForKey("userEmail")
+        Crashlytics.sharedInstance().setUserEmail(userEmail)
+        Crashlytics.sharedInstance().setUserIdentifier(userFirebaseID)
+        Crashlytics.sharedInstance().setUserName(userName)
     }
 
 

@@ -28,7 +28,7 @@ protocol PassSortDataDelegate: class {
     func acceptSortData(order: Int)
 }
 
-class QueryViewController: UIViewController, UIPopoverPresentationControllerDelegate, PassSortDataDelegate, PassFileterDataDelegate {
+class QueryViewController: UIViewController, UIPopoverPresentationControllerDelegate, PassSortDataDelegate, PassFileterDataDelegate{
 
     @IBOutlet weak var searchColloectionView: UICollectionView!
     // present popover View
@@ -63,8 +63,16 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
         super.viewDidLoad()
         searchCats = receiveCats
         self.searchColloectionView.reloadData()
-    }
+        }
     
+    func acceptLikesCount(catID: String, likesCount: Int) {
+        for (index,cat) in searchCats.enumerate() {
+            if cat.catID == catID {
+                searchCats[index].likesCount = likesCount
+            }
+        }
+        self.searchColloectionView.reloadData()
+    }
     
     
     func acceptData(age: String, sex: String, colour: String, district: String){

@@ -166,6 +166,7 @@
 				A0E712931D99618700E60826 /* Resources */,
 				0375F243782B5213C67B6A28 /* 📦 Embed Pods Frameworks */,
 				2D1CAD3E8EE6238569EB98C5 /* 📦 Copy Pods Resources */,
+				A081D2B81DBDBC4D005C9FCB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -270,6 +271,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MatePet/Pods-MatePet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A081D2B81DBDBC4D005C9FCB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run af2b3e345e4eb594deb19b576afbec10aa3d586d 7e5a3d6f68aeb35a52f6c57dd3d84e997fb8648612a74e208da1926268f55743";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -412,6 +426,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = MatePet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RosalieRabbit.MatePet;
