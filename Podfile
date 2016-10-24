@@ -15,5 +15,7 @@ target 'MatePet' do
   pod 'Firebase/Database'
   pod 'Fusuma'
   pod 'HanekeSwift'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end
