@@ -2,11 +2,13 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-GoogleService-Info.plist
 
 ## Build generated
 build/
 DerivedData/
+
+GoogleService-Info.plist
+
 
 ## Various settings
 *.pbxuser
