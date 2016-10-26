@@ -15,7 +15,7 @@
 	<key>GCM_SENDER_ID</key>
 	<string>448618902343</string>
 	<key>PLIST_VERSION</key>
-	<string>1</string>
+	<string>2</string>
 	<key>BUNDLE_ID</key>
 	<string>com.RosalieRabbit.MatePet</string>
 	<key>PROJECT_ID</key>
