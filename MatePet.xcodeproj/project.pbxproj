@@ -16,7 +16,6 @@
 		A0438CFC1DB4B84F00025820 /* LocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */; };
 		A0438CFE1DB4DB3800025820 /* PersonalLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */; };
 		A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */; };
-		A06A8B7C1DB71BD100648E04 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A8B7B1DB71BD100648E04 /* CustomTabBarController.swift */; };
 		A06A8B841DB7692500648E04 /* ShakeRandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A8B831DB7692500648E04 /* ShakeRandomViewController.swift */; };
 		A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070419D1D9AD17900674297 /* FBLoginViewController.swift */; };
 		A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */; };
@@ -46,7 +45,6 @@
 		A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDataModel.swift; sourceTree = "<group>"; };
 		A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalLikesViewController.swift; sourceTree = "<group>"; };
 		A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseEnum.swift; sourceTree = "<group>"; };
-		A06A8B7B1DB71BD100648E04 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		A06A8B831DB7692500648E04 /* ShakeRandomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeRandomViewController.swift; sourceTree = "<group>"; };
 		A070419D1D9AD17900674297 /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCatDetailViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 			children = (
 				A0A95A4F1D9B684F00268685 /* Assistant file */,
 				A070419D1D9AD17900674297 /* FBLoginViewController.swift */,
-				A06A8B7B1DB71BD100648E04 /* CustomTabBarController.swift */,
 				A06A8B831DB7692500648E04 /* ShakeRandomViewController.swift */,
 				A0C155211DAF780200483086 /* PersonalPageViewController.swift */,
 				A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */,
@@ -305,7 +302,6 @@
 				A06A8B841DB7692500648E04 /* ShakeRandomViewController.swift in Sources */,
 				A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */,
 				A0C155221DAF780200483086 /* PersonalPageViewController.swift in Sources */,
-				A06A8B7C1DB71BD100648E04 /* CustomTabBarController.swift in Sources */,
 				A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */,
 				A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */,
 				A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */,

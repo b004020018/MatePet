@@ -12,6 +12,7 @@ import MobileCoreServices
 import MediaPlayer
 import AVKit
 import Fusuma
+import CoreText
 
 class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FusumaDelegate {
     
@@ -23,15 +24,16 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var addVideoView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var addDataTextView: UITextView!
+    @IBOutlet weak var closeButton: UIButton!
     @IBAction func closeButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let parent = self.presentingViewController as? UITabBarController
         parent?.selectedIndex = 0
     }
     
-    
+    @IBOutlet weak var saveNewDataButton: UIButton!
     @IBAction func saveNewDataButton(sender: UIButton) {
-        
+        FIRAnalytics.logEventWithName("add_new_cat", parameters: nil)
         self.dataUpdateProgressView.hidden = false
         let facebookData = NSUserDefaults.standardUserDefaults()
         guard let userFacebookID = facebookData.stringForKey("userFacebookID") else { fatalError() }
@@ -54,6 +56,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //store in firebase
         
         if let localVideoPath = localVideoPath {
+            FIRAnalytics.logEventWithName("add_new_cat_choose_video", parameters: nil)
             let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).mov")
             let uploadMetadata = FIRStorageMetadata()
             uploadMetadata.contentType = "video/quicktime"
@@ -75,6 +78,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
         } else if let imagedata = imagedata {
+            FIRAnalytics.logEventWithName("add_new_cat_choose_image", parameters: nil)
             let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).jpg")
             let uploadMetadata = FIRStorageMetadata()
             uploadMetadata.contentType = "image/jpeg"
@@ -172,6 +176,9 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.saveNewDataButton.layer.cornerRadius = 5
+        self.closeButton.layer.cornerRadius = 0.5 * closeButton.bounds.size.width
+        
         self.dataUpdateProgressView.hidden = true
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
@@ -200,27 +207,35 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.init(red: 138.0/255.0, green: 151.0/255.0, blue: 166.0/255.0, alpha: 1.0)
+        pickerLabel.font = UIFont(name: "Avenir-Black", size: 16)
+        pickerLabel.textAlignment = NSTextAlignment.Center
         
         let pickerType = DataPickerType(rawValue: component)!
         switch pickerType {
         case .sexual:
             let sex = sexualPicker[row]
-            return sex.title
-            
+            pickerLabel.text = sex.title
         case .age :
             let age = agePicker[row]
-            return age.title
+            pickerLabel.text = age.title
             
         case .colour :
             let colour = colourPicker[row]
-            return colour.rawValue
-        
+            pickerLabel.text = colour.rawValue
+            
         case .district :
             let district = districtPicker[row]
-            return district.title
+            pickerLabel.text = district.title
+            
         }
+        
+        return pickerLabel
     }
+
+    
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let pickerType = DataPickerType(rawValue: component)!
