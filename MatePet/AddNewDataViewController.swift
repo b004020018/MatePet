@@ -36,6 +36,20 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet weak var saveNewDataButton: UIButton!
     @IBAction func saveNewDataButton(sender: UIButton) {
+        guard let selectedDataDetailSex = selectedDataDetail.sex,
+              let selectedDataDetailAge = selectedDataDetail.age,
+              let selectedDataDetailColour = selectedDataDetail.colour,
+              let selectedDataDetailDistrict = selectedDataDetail.district,
+              let selectedDataDetailDescription = selectedDataDetail.description
+        else{
+            let alertController = UIAlertController(title: "資料未完成", message: "把選取資料完成更容易把貓咪送養唷！", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                return
+            }
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
         FIRAnalytics.logEventWithName("add_new_cat", parameters: nil)
         self.dataUpdateProgressView.hidden = false
         let facebookData = NSUserDefaults.standardUserDefaults()
@@ -46,12 +60,12 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //TASK: store in database
         let cat: [String : AnyObject] = [
         "owner" : (FIRAuth.auth()?.currentUser?.uid)!,
-        "district" : selectedDataDetail.district,
+        "district" : selectedDataDetailDistrict,
         "created_at" : FIRServerValue.timestamp(),
-        "sex" : selectedDataDetail.sex,
-        "age" : selectedDataDetail.age,
-        "colour" : selectedDataDetail.colour,
-        "description" : selectedDataDetail.description,
+        "sex" : selectedDataDetailSex,
+        "age" : selectedDataDetailAge,
+        "colour" : selectedDataDetailColour,
+        "description" : selectedDataDetailDescription,
         "selected" : selected,
         "userFacebookID": userFacebookID,
         "likesCount": 0 ]
@@ -164,11 +178,11 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     struct SelectedDataDetail {
-        var sex: String!
-        var age: String!
-        var colour: String!
-        var district: Int!
-        var description: String!
+        var sex: String?
+        var age: String?
+        var colour: String?
+        var district: Int?
+        var description: String?
     }
     
     
