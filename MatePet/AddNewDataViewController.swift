@@ -13,9 +13,10 @@ import MediaPlayer
 import AVKit
 import Fusuma
 import CoreText
+import NotificationCenter
 
-class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FusumaDelegate {
-    
+class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FusumaDelegate, UITextViewDelegate {
+
     var imagedata: NSData?
     var localVideoPath: NSURL?
     var selected: String!
@@ -23,8 +24,10 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var dataUpdateProgressView: UIProgressView!
     @IBOutlet weak var addVideoView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var addDataTextView: UITextView!
     @IBOutlet weak var closeButton: UIButton!
+    //TASK: close AddNewDataViewController
     @IBAction func closeButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
         let parent = self.presentingViewController as? UITabBarController
@@ -36,8 +39,11 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         FIRAnalytics.logEventWithName("add_new_cat", parameters: nil)
         self.dataUpdateProgressView.hidden = false
         let facebookData = NSUserDefaults.standardUserDefaults()
-        guard let userFacebookID = facebookData.stringForKey("userFacebookID") else { fatalError() }
-        //store in database
+        guard let userFacebookID = facebookData.stringForKey("userFacebookID") else {
+        print("can't get userFacebookID")
+        return
+        }
+        //TASK: store in database
         let cat: [String : AnyObject] = [
         "owner" : (FIRAuth.auth()?.currentUser?.uid)!,
         "district" : selectedDataDetail.district,
@@ -53,7 +59,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let autoID = rootRef.child("Cats").childByAutoId().key
         rootRef.child("Cats").child(autoID).setValue(cat)
         
-        //store in firebase
+        //TASK: store in storage
         
         if let localVideoPath = localVideoPath {
             FIRAnalytics.logEventWithName("add_new_cat_choose_video", parameters: nil)
@@ -62,7 +68,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             uploadMetadata.contentType = "video/quicktime"
             let uploadTask = storageRef.putFile(localVideoPath, metadata: uploadMetadata) { (metadata, error) in
                 if (error != nil) {
-                    print("Got error")
+                    print("upload video Got error")
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     let parent = self.presentingViewController as? UITabBarController
@@ -84,7 +90,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             uploadMetadata.contentType = "image/jpeg"
             let uploadTask = storageRef.putData(imagedata, metadata: uploadMetadata) { (metadata, error) in
                 if (error != nil) {
-                    print("Got error")
+                    print("upload image Got error")
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     let parent = self.presentingViewController as? UITabBarController
@@ -100,7 +106,8 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             }
         }
     }
-    func addVideoViewTapped(sender: AnyObject)
+    
+    func addImageVideoViewTapped(sender: AnyObject)
     {
         let fusuma = FusumaViewController()
         fusuma.delegate = self
@@ -176,20 +183,30 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //setting save button
         self.saveNewDataButton.layer.cornerRadius = 5
         self.closeButton.layer.cornerRadius = 0.5 * closeButton.bounds.size.width
         
+        //setting keyboard observe and disappear
+        setUpKeyboardObserver()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        self.descriptionTextView.delegate = self
+        
+        //setting updateprogress and picker view
         self.dataUpdateProgressView.hidden = true
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
         selectedDataDetail.description = addDataTextView.text
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddNewDataViewController.addVideoViewTapped(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddNewDataViewController.addImageVideoViewTapped(_:)))
         addVideoView.userInteractionEnabled = true
         addVideoView.addGestureRecognizer(tapGestureRecognizer)
        
     }
     
+    //TASK: pickerView
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 4
     }
@@ -258,21 +275,40 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             
         }
     }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
+    //TASK: observe UIKeyboard Height
+    var keyboardHeight: CGFloat!
+    private func setUpKeyboardObserver() {
         
-        self.animateTextField(textField, up: true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            keyboardHeight = keyboardSize.height
+        }
+    }
+    
+    func dismissKeyboard() {
+        
+        view.endEditing(true)
+    }
+    
+    //TASK: textView move up
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        self.animatetextView(textView, up: true)
     }
     
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textViewDidEndEditing(textView: UITextView) {
         
-        self.animateTextField(textField, up: false)
+        self.animatetextView(textView, up: false)
     }
     
-    func animateTextField(textField: UITextField, up: Bool) {
+    func animatetextView(textView: UITextView, up: Bool) {
         
-        let movementDistance:CGFloat = -140
+        let movementDistance = -keyboardHeight + 50
         let movementDuration: Double = 0.3
         
         var movement:CGFloat = 0
@@ -283,13 +319,12 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             movement = -movementDistance
         }
         
-        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.beginAnimations("animatetextView", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
         UIView.setAnimationDuration(movementDuration)
         self.view.frame = CGRectOffset(self.view.frame, 0, movement)
         UIView.commitAnimations()
     }
-    
 
 }
 
