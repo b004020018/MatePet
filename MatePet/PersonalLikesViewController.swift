@@ -18,6 +18,7 @@ class PersonalLikesTableCell: UITableViewCell {
     @IBOutlet weak var catColour: UILabel!
     @IBOutlet weak var catDistrict: UILabel!
     @IBOutlet weak var catView: UIView!
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var catImageView: UIImageView!
     
 
@@ -76,6 +77,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.personalLikesTableView.dequeueReusableCellWithIdentifier("personalLikesTableCell",forIndexPath: indexPath) as! PersonalLikesTableCell
+        cell.imageIndicator.startAnimating()
         cell.catDistrict.text = likesCats[indexPath.row].district
         cell.catSex.text = likesCats[indexPath.row].sex
         cell.catColour.text = likesCats[indexPath.row].colour
@@ -89,6 +91,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
                 } else {
                     cell.catImageView.hnk_setImageFromURL(url!)
                 }
+            cell.imageIndicator.stopAnimating()
             }
         }else if likesCats[indexPath.row].selected == "video" {
             let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
@@ -104,6 +107,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
                     self.addChildViewController(playerViewController)
                     
                 }
+            cell.imageIndicator.stopAnimating()
             }
         }
 

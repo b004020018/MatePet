@@ -19,6 +19,7 @@ class Catcell: UICollectionViewCell {
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     
 }
 
@@ -31,6 +32,8 @@ protocol CatManagerDelegate: class {
 class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     
     @IBOutlet weak var catsCollectionView: UICollectionView!
+    
+
     
     var mainCats = [Cat]()
     var passCat: Cat!
@@ -62,6 +65,7 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
 
 
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! Catcell
+            cell.imageIndicator.startAnimating()
             cell.districtLabel.text = mainCats[indexPath.row].district
             cell.sexLabel.text = mainCats[indexPath.row].sex
             cell.likesCountLabel.text = String(mainCats[indexPath.row].likesCount)
@@ -74,6 +78,7 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
                     } else {
                         cell.imageView.hnk_setImageFromURL(url!)
                     }
+                cell.imageIndicator.stopAnimating()
                 }
             }else if mainCats[indexPath.row].selected == "video" {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
@@ -89,6 +94,7 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
                         self.addChildViewController(playerViewController)
 
                     }
+                cell.imageIndicator.stopAnimating()
                 }
             }
 

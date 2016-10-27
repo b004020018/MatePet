@@ -18,6 +18,7 @@ class PersonalOwnsTableCell: UITableViewCell {
     @IBOutlet weak var catColour: UILabel!
     @IBOutlet weak var catDistrict: UILabel!
     @IBOutlet weak var catView: UIView!
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var catImageView: UIImageView!
     
     @IBOutlet weak var editButton: UIButton!
@@ -70,6 +71,7 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.personalOwnsTableView.dequeueReusableCellWithIdentifier("personalOwnsTableCell",forIndexPath: indexPath) as! PersonalOwnsTableCell
+        cell.imageIndicator.startAnimating()
         cell.catDistrict.text = OwnsCats[indexPath.row].district
         cell.catSex.text = OwnsCats[indexPath.row].sex
         cell.catColour.text = OwnsCats[indexPath.row].colour
@@ -85,6 +87,7 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
                 } else {
                     cell.catImageView.hnk_setImageFromURL(url!)
                 }
+            cell.imageIndicator.stopAnimating()
             }
         }else if OwnsCats[indexPath.row].selected == "video" {
             let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
@@ -100,6 +103,7 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
                     self.addChildViewController(playerViewController)
                     
                 }
+            cell.imageIndicator.stopAnimating()
             }
         }
         

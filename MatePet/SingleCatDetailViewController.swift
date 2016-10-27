@@ -18,6 +18,7 @@ class SingleCatDetailViewController: UIViewController {
     var buttonHidden: Bool!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var catView: UIView!
    
@@ -114,6 +115,7 @@ class SingleCatDetailViewController: UIViewController {
         }else {
             self.closeButton.hidden = false
         }
+        imageIndicator.startAnimating()
         catAgeLabel.text = cat.age
         catColourLabel.text = cat.colour
         catSexLabel.text = cat.sex
@@ -128,6 +130,7 @@ class SingleCatDetailViewController: UIViewController {
                 } else {
                     self.catImageView.hnk_setImageFromURL(url!)
                 }
+            self.imageIndicator.stopAnimating()
             }
         }else if cat.selected == "video" {
             let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).mov")
@@ -143,6 +146,7 @@ class SingleCatDetailViewController: UIViewController {
                     self.addChildViewController(playerViewController)
                     
                 }
+            self.imageIndicator.stopAnimating()
             }
         }
         

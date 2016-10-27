@@ -17,6 +17,7 @@ class FilterCell: UICollectionViewCell {
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     
 }
 
@@ -140,6 +141,7 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
      func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath)
         -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as! FilterCell
+            cell.imageIndicator.startAnimating()
             cell.districtLabel.text = searchCats[indexPath.row].district
             cell.sexLabel.text = searchCats[indexPath.row].sex
             cell.likesCountLabel.text = String(searchCats[indexPath.row].likesCount)
@@ -152,6 +154,7 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
                     } else {
                         cell.imageView.hnk_setImageFromURL(url!)
                     }
+                cell.imageIndicator.stopAnimating()
                 }
             }else if searchCats[indexPath.row].selected == "video" {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
@@ -166,9 +169,8 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
                         cell.catView.addSubview(playerViewController.view)
                         self.addChildViewController(playerViewController)
                         
-                        
-                        
                     }
+                cell.imageIndicator.stopAnimating()
                 }
             }
             

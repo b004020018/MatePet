@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Eda-fp-Umx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sr3-CV-YA9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -159,6 +159,10 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yix-Vi-ByS">
+                                                    <rect key="frame" x="115" y="115" width="20" height="20"/>
+                                                    <color key="color" red="0.94901960780000005" green="0.67450980390000004" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="250" id="7Cg-qg-NIC"/>
@@ -167,6 +171,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="Q0X-A4-4r7" secondAttribute="bottom" id="MGY-zi-2C2"/>
                                                 <constraint firstAttribute="width" constant="250" id="S1O-4R-RaO"/>
                                                 <constraint firstItem="Q0X-A4-4r7" firstAttribute="leading" secondItem="Vna-Nj-FNJ" secondAttribute="leading" id="WKs-8w-Dic"/>
+                                                <constraint firstItem="Yix-Vi-ByS" firstAttribute="centerX" secondItem="Vna-Nj-FNJ" secondAttribute="centerX" id="XSs-IA-vSU"/>
+                                                <constraint firstItem="Yix-Vi-ByS" firstAttribute="centerY" secondItem="Vna-Nj-FNJ" secondAttribute="centerY" id="dCL-KF-TAe"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -184,6 +190,7 @@
                                 <connections>
                                     <outlet property="catView" destination="Vna-Nj-FNJ" id="Ocv-Lc-M7l"/>
                                     <outlet property="districtLabel" destination="vE8-PV-qq8" id="0i6-bp-jaV"/>
+                                    <outlet property="imageIndicator" destination="Yix-Vi-ByS" id="1yc-DM-7ja"/>
                                     <outlet property="imageView" destination="Q0X-A4-4r7" id="S5a-dE-uxO"/>
                                     <outlet property="likesCountLabel" destination="MPy-iQ-W7S" id="TWV-6m-DUu"/>
                                     <outlet property="sexLabel" destination="fxv-FX-Jnz" id="F8L-Og-9ht"/>
@@ -350,6 +357,10 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="goP-nm-hZw">
+                                                            <rect key="frame" x="115" y="115" width="20" height="20"/>
+                                                            <color key="color" red="0.94901960780000005" green="0.67450980390000004" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -357,8 +368,10 @@
                                                         <constraint firstItem="lB3-rr-mqf" firstAttribute="top" secondItem="nXK-eS-HQL" secondAttribute="top" id="58K-aL-rBx"/>
                                                         <constraint firstAttribute="trailing" secondItem="lB3-rr-mqf" secondAttribute="trailing" id="DRg-oX-g77"/>
                                                         <constraint firstItem="lB3-rr-mqf" firstAttribute="leading" secondItem="nXK-eS-HQL" secondAttribute="leading" id="DXh-4y-zPo"/>
+                                                        <constraint firstItem="goP-nm-hZw" firstAttribute="centerX" secondItem="nXK-eS-HQL" secondAttribute="centerX" id="SzZ-QA-Fsv"/>
                                                         <constraint firstAttribute="height" constant="250" id="a0q-Zc-1qB"/>
                                                         <constraint firstAttribute="width" constant="250" id="nFF-VZ-vrB"/>
+                                                        <constraint firstItem="goP-nm-hZw" firstAttribute="centerY" secondItem="nXK-eS-HQL" secondAttribute="centerY" id="ypc-6p-6lf"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -376,6 +389,7 @@
                                         <connections>
                                             <outlet property="catView" destination="nXK-eS-HQL" id="FKU-MX-HP6"/>
                                             <outlet property="districtLabel" destination="iFK-H0-VHD" id="8SQ-ot-JA2"/>
+                                            <outlet property="imageIndicator" destination="goP-nm-hZw" id="1xj-Rb-mJy"/>
                                             <outlet property="imageView" destination="lB3-rr-mqf" id="1pK-xb-FTS"/>
                                             <outlet property="likesCountLabel" destination="hHH-TP-4YN" id="6JK-0g-AGX"/>
                                             <outlet property="sexLabel" destination="kT5-co-Gbw" id="bJS-7j-4P9"/>
@@ -430,10 +444,16 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e1E-En-F7P">
                                                 <rect key="frame" x="0.0" y="0.0" width="541" height="541"/>
                                             </imageView>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xdS-9H-hba">
+                                                <rect key="frame" x="252.5" y="251.5" width="37" height="37"/>
+                                                <color key="color" red="0.94901960780000005" green="0.67450980390000004" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="e1E-En-F7P" firstAttribute="top" secondItem="AGg-IE-gAG" secondAttribute="top" id="BJQ-aE-U51"/>
                                             <constraint firstAttribute="bottom" secondItem="e1E-En-F7P" secondAttribute="bottom" id="DcI-Sr-zCD"/>
+                                            <constraint firstItem="xdS-9H-hba" firstAttribute="centerY" secondItem="AGg-IE-gAG" secondAttribute="centerY" id="YA3-wM-Gpm"/>
+                                            <constraint firstItem="xdS-9H-hba" firstAttribute="centerX" secondItem="AGg-IE-gAG" secondAttribute="centerX" id="az1-ya-L5n"/>
                                             <constraint firstAttribute="width" secondItem="AGg-IE-gAG" secondAttribute="height" multiplier="1:1" id="bhM-lX-jdK"/>
                                             <constraint firstAttribute="trailing" secondItem="e1E-En-F7P" secondAttribute="trailing" id="j85-Wz-94Q"/>
                                             <constraint firstItem="e1E-En-F7P" firstAttribute="leading" secondItem="AGg-IE-gAG" secondAttribute="leading" id="uTs-03-ELn"/>
@@ -551,6 +571,7 @@
                         <outlet property="catSexLabel" destination="Jvx-mD-8R2" id="s7K-s8-lcs"/>
                         <outlet property="catView" destination="AGg-IE-gAG" id="Bj6-0v-qan"/>
                         <outlet property="closeButton" destination="nre-Yg-BKE" id="A9C-SM-Usf"/>
+                        <outlet property="imageIndicator" destination="xdS-9H-hba" id="Ihl-kB-FVl"/>
                         <outlet property="likeButton" destination="I8W-My-yVk" id="iVw-Cw-u5B"/>
                         <outlet property="scrollView" destination="AES-aH-0WG" id="gTR-R0-N6M"/>
                     </connections>
@@ -579,7 +600,9 @@
                                     <constraint firstAttribute="width" constant="35" id="gVM-48-bxk"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" image="close-button"/>
+                                <state key="normal" image="close-button">
+                                    <color key="titleColor" red="0.45882352941176469" green="0.0" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="closeButton:" destination="Dul-PR-t9v" eventType="touchUpInside" id="LxK-Xt-yVK"/>
                                 </connections>
@@ -955,7 +978,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCA-Mi-VF8">
                                 <rect key="frame" x="15" y="617" width="345" height="40"/>
-                                <color key="backgroundColor" red="0.54117647059999996" green="0.054901960780000002" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.54117647058823526" green="0.054901960784313725" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="pQ9-8h-E7z"/>
                                 </constraints>
@@ -1130,14 +1153,20 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7p9-Wa-chx">
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="U9I-KC-MCD">
+                                                    <rect key="frame" x="45" y="45" width="20" height="20"/>
+                                                    <color key="color" red="0.94901960780000005" green="0.67450980390000004" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="110" id="8up-dy-5Jb"/>
                                                 <constraint firstAttribute="trailing" secondItem="7p9-Wa-chx" secondAttribute="trailing" id="Flo-JF-EVo"/>
                                                 <constraint firstAttribute="bottom" secondItem="7p9-Wa-chx" secondAttribute="bottom" id="KSq-T6-nyT"/>
+                                                <constraint firstItem="U9I-KC-MCD" firstAttribute="centerY" secondItem="VId-Yr-zLc" secondAttribute="centerY" id="PqP-4I-CNB"/>
                                                 <constraint firstAttribute="width" constant="110" id="cdw-Yl-sEY"/>
                                                 <constraint firstItem="7p9-Wa-chx" firstAttribute="leading" secondItem="VId-Yr-zLc" secondAttribute="leading" id="chT-IS-igJ"/>
                                                 <constraint firstItem="7p9-Wa-chx" firstAttribute="top" secondItem="VId-Yr-zLc" secondAttribute="top" id="ilN-Yg-6b5"/>
+                                                <constraint firstItem="U9I-KC-MCD" firstAttribute="centerX" secondItem="VId-Yr-zLc" secondAttribute="centerX" id="v9c-ZL-7Ih"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年紀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-hh-96c">
@@ -1199,6 +1228,7 @@
                                     <outlet property="catView" destination="VId-Yr-zLc" id="NWn-vf-3ZO"/>
                                     <outlet property="deleteButton" destination="i5i-sS-jBx" id="cxT-f5-g3j"/>
                                     <outlet property="editButton" destination="bRG-LB-Esy" id="k8C-DH-hfq"/>
+                                    <outlet property="imageIndicator" destination="U9I-KC-MCD" id="shg-tR-0K5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1238,11 +1268,17 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bz1-Gt-4Tk">
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vAe-Bv-myp">
+                                                    <rect key="frame" x="45" y="45" width="20" height="20"/>
+                                                    <color key="color" red="0.94901960780000005" green="0.67450980390000004" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="110" id="9hz-Zi-sUc"/>
+                                                <constraint firstItem="vAe-Bv-myp" firstAttribute="centerX" secondItem="ftG-o6-xL6" secondAttribute="centerX" id="EVS-hd-ycp"/>
                                                 <constraint firstAttribute="bottom" secondItem="Bz1-Gt-4Tk" secondAttribute="bottom" id="M6v-bZ-orz"/>
                                                 <constraint firstItem="Bz1-Gt-4Tk" firstAttribute="top" secondItem="ftG-o6-xL6" secondAttribute="top" id="Np3-us-3I0"/>
+                                                <constraint firstItem="vAe-Bv-myp" firstAttribute="centerY" secondItem="ftG-o6-xL6" secondAttribute="centerY" id="eHj-bc-TBR"/>
                                                 <constraint firstAttribute="width" constant="110" id="lNM-Kr-a5w"/>
                                                 <constraint firstItem="Bz1-Gt-4Tk" firstAttribute="leading" secondItem="ftG-o6-xL6" secondAttribute="leading" id="pMr-X5-VoC"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bz1-Gt-4Tk" secondAttribute="trailing" id="wF0-Hn-80k"/>
@@ -1293,6 +1329,7 @@
                                     <outlet property="catImageView" destination="Bz1-Gt-4Tk" id="TmS-Hw-CbB"/>
                                     <outlet property="catSex" destination="F1o-TZ-FKG" id="Hwg-ec-KZD"/>
                                     <outlet property="catView" destination="ftG-o6-xL6" id="aaZ-n9-z1f"/>
+                                    <outlet property="imageIndicator" destination="vAe-Bv-myp" id="GZP-vB-fmN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1406,6 +1443,6 @@
         <image name="close-button" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X4l-8l-E4u"/>
+        <segue reference="Ht3-wa-NNl"/>
     </inferredMetricsTieBreakers>
 </document>

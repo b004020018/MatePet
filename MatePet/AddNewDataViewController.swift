@@ -46,6 +46,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
                 return
             }
+            alertController.view.tintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
             alertController.addAction(okAction)
             self.presentViewController(alertController, animated: true, completion: nil)
             return
