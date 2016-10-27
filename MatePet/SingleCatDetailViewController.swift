@@ -11,6 +11,7 @@ import Firebase
 import SafariServices
 import MediaPlayer
 import AVKit
+import FaveButton
 
 class SingleCatDetailViewController: UIViewController {
     
@@ -28,15 +29,14 @@ class SingleCatDetailViewController: UIViewController {
     @IBOutlet weak var catDistrictLabel: UILabel!
     @IBOutlet weak var catDescription: UILabel!
     
-    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var catImageView: UIImageView!
+    
+    @IBOutlet weak var loveButton: FaveButton!
+    
     @IBOutlet weak var closeButton: UIButton!
-    
-    
     @IBAction func closeButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     
     
     @IBAction func ownerMessengerLinkButton(sender: UIButton) {
@@ -63,9 +63,8 @@ class SingleCatDetailViewController: UIViewController {
     var userFirebaseID: String!
 
     
-    @IBAction func LikeButton(sender: UIButton) {
+    @IBAction func loveButton(sender: FaveButton) {
         let rootRef = FIRDatabase.database().reference()
-        
         if snapshotExist == false {
             let like: [String : AnyObject] = [
                 "postID" : cat.catID,
@@ -97,11 +96,11 @@ class SingleCatDetailViewController: UIViewController {
             }
             if let presentVC = self.navigationController?.viewControllers[n-2] as? QueryViewController {
                 presentVC.acceptLikesCount(cat.catID, likesCount: cat.likesCount - 1)
+                
             }
         }
-
-        
     }
+    
     
     var snapshotExist = false
     var likeKey = ""
@@ -110,6 +109,7 @@ class SingleCatDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if buttonHidden == true {
             self.closeButton.hidden = true
         }else {
@@ -172,17 +172,17 @@ class SingleCatDetailViewController: UIViewController {
                         
                         if likePersonID  == self.userFirebaseID {
                             self.likeKey = firebaseItemKey[index]
-                            self.likeButton.setImage(UIImage(named: "like")!.imageWithRenderingMode(.Automatic), forState: .Normal)
+                            self.loveButton.selected = true
                             self.snapshotExist = true
                             return
                         } else {
-                            self.likeButton.setImage(UIImage(named: "unlike")!.imageWithRenderingMode(.Automatic), forState: .Normal)
+                            self.loveButton.selected = false
                             self.snapshotExist = false
                         }
                     }
                 }
             } else {
-            self.likeButton.setImage(UIImage(named: "unlike")!.imageWithRenderingMode(.Automatic), forState: .Normal)
+            self.loveButton.selected = false
             self.snapshotExist = false
             }
         })
