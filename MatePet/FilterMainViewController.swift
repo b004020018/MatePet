@@ -13,11 +13,13 @@ class FilterMainViewController: UIViewController {
     weak var delegate : PassFileterDataDelegate?
     
     
+    @IBOutlet weak var closeButton: UIButton!
     @IBAction func closeButton(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
+    @IBOutlet weak var DoneButton: UIButton!
     @IBAction func DoneButton(sender: UIButton) {
         let filterData = childVC.filterParameters
         self.delegate?.acceptData(filterData.age, sex: filterData.sex, colour: filterData.colour, district: filterData.district)
@@ -25,6 +27,11 @@ class FilterMainViewController: UIViewController {
         
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.DoneButton.layer.cornerRadius = 5
+        self.closeButton.layer.cornerRadius = 0.5 * closeButton.bounds.size.width
+    }
     
     
     var childVC: FilterDataTableViewController!

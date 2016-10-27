@@ -36,6 +36,7 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
     @IBOutlet weak var districtTextField: UITextField!
     
     @IBOutlet weak var ageSegment: UISegmentedControl!
+
     @IBAction func ageSegmentControl(sender: UISegmentedControl) {
         let ageEnum = AgeEnum(rawValue: ageSegment.selectedSegmentIndex)!
         switch ageEnum {
@@ -74,6 +75,11 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         super.viewDidLoad()
         self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0)
         
+        //TASK: setting segment font
+        ageSegment.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Black", size: 14.0)! ], forState: .Normal)
+        sexSegment.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Black", size: 16.0)! ], forState: .Normal)
+        
+        //TASK: setting pickerView
         let colourPickerView = UIPickerView()
         let districtPickerView = UIPickerView()
         colourPickerView.backgroundColor = UIColor.whiteColor()
@@ -81,13 +87,14 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         colourPickerView.showsSelectionIndicator = true
        
         let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor.darkTextColor()
+        toolBar.barTintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+        toolBar.translucent = false
+        toolBar.tintColor = UIColor.whiteColor()
         toolBar.sizeToFit()
         
         
         let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(self.done))
+        doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Avenir-Black", size: 16.0)!], forState: UIControlState.Normal)
     
         
         toolBar.setItems([doneButton], animated: false)
@@ -130,16 +137,24 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.init(red: 100.0/255.0, green: 109.0/255.0, blue: 120.0/255.0, alpha: 1.0)
+        pickerLabel.font = UIFont(name: "Avenir-Black", size: 18)
+        pickerLabel.textAlignment = NSTextAlignment.Center
+        
         if pickerView.tag == 0 {
             let colour = colourPicker[row]
-            return colour.rawValue
+            pickerLabel.text = colour.rawValue
         } else if pickerView.tag == 1 {
             let district = districtPicker[row]
-            return district.title
+            pickerLabel.text = district.title
         }
-        return ""
+        
+        return pickerLabel
     }
+
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
