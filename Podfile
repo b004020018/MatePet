@@ -17,5 +17,5 @@ target 'MatePet' do
   pod 'HanekeSwift'
   pod 'Fabric'
   pod 'Crashlytics'
-
+  pod 'FaveButton', '~> 1.2.1'
 end

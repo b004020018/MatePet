@@ -8,6 +8,7 @@ PODS:
   - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.8)
+  - FaveButton (1.2.1)
   - FBSDKCoreKit (4.15.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.15.1):
@@ -57,6 +58,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
+  - FaveButton (~> 1.2.1)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -71,6 +73,7 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
+  FaveButton: 1eb05f8175e9f9b46bdd608c16a9917e8f5a99d1
   FBSDKCoreKit: fc7fa53d16b095ee3fd53f0cd59f1df8bcbb634d
   FBSDKLoginKit: 073f79b3b2e762fc6f54a283fe15f45372d59f5f
   FBSDKShareKit: 11cbb5a4d7b5fda8143cc95b76188147e6725736
@@ -87,6 +90,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
 
-PODFILE CHECKSUM: fc79750a726e7f9c626b16ff369c1c5e361e1e14
+PODFILE CHECKSUM: 04f61f6df62e061e62f805da38e49b1057c1fa71
 
 COCOAPODS: 1.0.0
