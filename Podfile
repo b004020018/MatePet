@@ -18,4 +18,6 @@ target 'MatePet' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'FaveButton', '~> 1.2.1'
+  pod 'Regift', '~> 1.2.0'
+  pod 'SwiftGifOrigin', '~> 1.5.3' 
 end
