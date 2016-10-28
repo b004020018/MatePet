@@ -20,6 +20,7 @@ class FBLoginViewController: UIViewController {
             } else if facebookResult.isCancelled { print("Facebook login was cancelled.")
             } else {
                 let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+                
                 FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
                   //store user Data
                     guard let user = user else { fatalError() }

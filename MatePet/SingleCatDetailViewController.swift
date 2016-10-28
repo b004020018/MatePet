@@ -40,21 +40,17 @@ class SingleCatDetailViewController: UIViewController {
     
     
     @IBAction func ownerMessengerLinkButton(sender: UIButton) {
-        let userFacebookID = facebookData.stringForKey("userFacebookID")!
-        let FBmessengerLink = "http://m.me/\(userFacebookID)"
+        let userFacebookID = cat.userFacebookID
+        let FBmessengerLink = "https://www.facebook.com/\(userFacebookID)"
         
-        let FBURL = NSURL(string: FBmessengerLink)!
-        
-        if UIApplication.sharedApplication().canOpenURL(FBURL) {
-            
-            UIApplication.sharedApplication().openURL(FBURL)
-            
-        } else {
-            
-            let safariVC = SFSafariViewController(URL: FBURL)
-            
-            presentViewController(safariVC, animated: true, completion: nil)
+        guard let fbURL = NSURL(string: FBmessengerLink) else {
+        print("can't get link")
+        return
         }
+            
+        let safariVC = SFSafariViewController(URL: fbURL)
+        presentViewController(safariVC, animated: true, completion: nil)
+
         
     }
     
@@ -105,8 +101,6 @@ class SingleCatDetailViewController: UIViewController {
     var snapshotExist = false
     var likeKey = ""
     
-//    fb-messenger://user-thread/USER_ID
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,6 +109,7 @@ class SingleCatDetailViewController: UIViewController {
         }else {
             self.closeButton.hidden = false
         }
+
         imageIndicator.startAnimating()
         catAgeLabel.text = cat.age
         catColourLabel.text = cat.colour
