@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import MediaPlayer
 import AVKit
+import SwiftGifOrigin
 
 class FilterCell: UICollectionViewCell {
     @IBOutlet weak var districtLabel: UILabel!
@@ -157,18 +158,16 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
                 cell.imageIndicator.stopAnimating()
                 }
             }else if searchCats[indexPath.row].selected == "video" {
-                let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
+                let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).gif")
                 storageRef.downloadURLWithCompletion{ (url, error) -> Void in
                     if error != nil {
                         print("error")
                     } else {
-                        let player = AVPlayer(URL: url!)
-                        let playerViewController = AVPlayerViewController()
-                        playerViewController.player = player
-                        playerViewController.view.frame = cell.catView.frame
-                        cell.catView.addSubview(playerViewController.view)
-                        self.addChildViewController(playerViewController)
-                        
+                        guard let gifUrl = url else {
+                            print("can't get gif url from firebase")
+                            return
+                        }
+                        cell.imageView.image = UIImage.gifWithURL("\(gifUrl)")
                     }
                 cell.imageIndicator.stopAnimating()
                 }

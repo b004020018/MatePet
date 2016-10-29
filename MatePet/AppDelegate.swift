@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Crashlytics.self])
         self.logUser()
-
         return true
     }
 
@@ -65,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Crashlytics.sharedInstance().setUserIdentifier(userFirebaseID)
         Crashlytics.sharedInstance().setUserName(userName)
     }
-
-
+    
 }
 

@@ -29,6 +29,7 @@ class PersonalPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 20)
         
         userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true

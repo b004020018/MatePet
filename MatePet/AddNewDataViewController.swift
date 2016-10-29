@@ -14,15 +14,19 @@ import AVKit
 import Fusuma
 import CoreText
 import NotificationCenter
+import Regift
+import SwiftGifOrigin
+
 
 class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FusumaDelegate, UITextViewDelegate {
 
     var imagedata: NSData?
-    var localVideoPath: NSURL?
+    var localGifPath: NSURL?
     var selected: String!
     
     @IBOutlet weak var dataUpdateProgressView: UIProgressView!
     @IBOutlet weak var addVideoView: UIView!
+    @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var addDataTextView: UITextView!
@@ -76,14 +80,13 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         //TASK: store in storage
         
-        if let localVideoPath = localVideoPath {
-            FIRAnalytics.logEventWithName("add_new_cat_choose_video", parameters: nil)
-            let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).mov")
+        if let localGifPath = localGifPath {
+            let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).gif")
             let uploadMetadata = FIRStorageMetadata()
-            uploadMetadata.contentType = "video/quicktime"
-            let uploadTask = storageRef.putFile(localVideoPath, metadata: uploadMetadata) { (metadata, error) in
+            uploadMetadata.contentType = "image/gif"
+            let uploadTask = storageRef.putFile(localGifPath, metadata: uploadMetadata) { (metadata, error) in
                 if (error != nil) {
-                    print("upload video Got error")
+                    print("upload gif Got error")
                 } else {
                     self.dismissViewControllerAnimated(true, completion: nil)
                     let parent = self.presentingViewController as? UITabBarController
@@ -95,11 +98,10 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
                     print("prgress bar error")
                     return
                 }
-                self.dataUpdateProgressView.progress = Float(progress.fractionCompleted)
+            self.dataUpdateProgressView.progress = Float(progress.fractionCompleted)
             }
             
         } else if let imagedata = imagedata {
-            FIRAnalytics.logEventWithName("add_new_cat_choose_image", parameters: nil)
             let storageRef = FIRStorage.storage().reference().child("Cats/\(autoID).jpg")
             let uploadMetadata = FIRStorageMetadata()
             uploadMetadata.contentType = "image/jpeg"
@@ -117,7 +119,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
                     print("prgress bar error")
                     return
                 }
-                self.dataUpdateProgressView.progress = Float(progress.fractionCompleted)
+            self.dataUpdateProgressView.progress = Float(progress.fractionCompleted)
             }
         }
     }
@@ -133,9 +135,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func fusumaImageSelected(image: UIImage) {
         selected = "image"
-        let imageView = UIImageView(image: image)
-        imageView.frame = self.addVideoView.frame
-        view.addSubview(imageView)
+        self.selectedImageView.image = image
         imagedata = UIImagePNGRepresentation(image)
         print("Image selected")
     }
@@ -147,20 +147,21 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func fusumaVideoCompleted(withFileURL fileURL: NSURL) {
         selected = "video"
-        localVideoPath = fileURL
-        let url = localVideoPath
-                let player = AVPlayer(URL: url!)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-        
-                playerViewController.view.frame = self.addVideoView.frame
-                self.addVideoView = playerViewController.view
-                self.view.addSubview(playerViewController.view)
-                self.addChildViewController(playerViewController)
-                
-                player.play()
-
         print("Called just after a video has been selected.")
+        let videoURL   = fileURL
+        let frameCount = 20
+        let delayTime  = Float(0.2)
+        
+        Regift.createGIFFromSource(videoURL, frameCount: frameCount, delayTime: delayTime) { (result) in
+            guard let  localGifPath = result else {
+                print("didn't get gif")
+                return
+            }
+            print("Gif saved to \(localGifPath)")
+            let gifNSData = NSData(contentsOfURL: localGifPath)
+            self.selectedImageView.image = UIImage.gifWithData(gifNSData!)
+            self.localGifPath = localGifPath
+        }
     }
     
     // When camera roll is not authorized, this method is called.

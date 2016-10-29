@@ -12,6 +12,7 @@ import SafariServices
 import MediaPlayer
 import AVKit
 import FaveButton
+import SwiftGifOrigin
 
 class SingleCatDetailViewController: UIViewController {
     
@@ -128,18 +129,20 @@ class SingleCatDetailViewController: UIViewController {
             self.imageIndicator.stopAnimating()
             }
         }else if cat.selected == "video" {
-            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).mov")
+            let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).gif")
             storageRef.downloadURLWithCompletion{ (url, error) -> Void in
                 if error != nil {
                     print("error")
                 } else {
-                    let player = AVPlayer(URL: url!)
-                    let playerViewController = AVPlayerViewController()
-                    playerViewController.player = player
-                    playerViewController.view.frame = self.catView.frame
-                    self.catView.addSubview(playerViewController.view)
-                    self.addChildViewController(playerViewController)
-                    
+                    if error != nil {
+                        print("error")
+                    } else {
+                        guard let gifUrl = url else {
+                            print("can't get gif url from firebase")
+                            return
+                        }
+                        self.catImageView.image = UIImage.gifWithURL("\(gifUrl)")
+                    }
                 }
             self.imageIndicator.stopAnimating()
             }

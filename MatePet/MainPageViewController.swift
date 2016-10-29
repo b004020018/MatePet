@@ -12,6 +12,7 @@ import Firebase
 import Haneke
 import MediaPlayer
 import AVKit
+import SwiftGifOrigin
 
 class Catcell: UICollectionViewCell {
     @IBOutlet weak var districtLabel: UILabel!
@@ -81,18 +82,18 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
                 cell.imageIndicator.stopAnimating()
                 }
             }else if mainCats[indexPath.row].selected == "video" {
-                let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).mov")
+                let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).gif")
                 storageRef.downloadURLWithCompletion{ (url, error) -> Void in
                     if error != nil {
                         print("error")
                     } else {
-                        let player = AVPlayer(URL: url!)
-                        let playerViewController = AVPlayerViewController()
-                        playerViewController.player = player
-                        playerViewController.view.frame = cell.catView.frame
-                        cell.catView.addSubview(playerViewController.view)
-                        self.addChildViewController(playerViewController)
-
+                        guard let gifUrl = url else {
+                        print("can't get gif url from firebase")
+                        return
+                        }
+                        dispatch_async(dispatch_get_main_queue(),{
+                            cell.imageView.image = UIImage.gifWithURL("\(gifUrl)")
+                        })
                     }
                 cell.imageIndicator.stopAnimating()
                 }
