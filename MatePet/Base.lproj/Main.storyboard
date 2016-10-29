@@ -206,12 +206,10 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="MatePet" id="L2I-ef-QJd">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="cDM-hi-bXP">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aQM-aZ-SFV">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aQM-aZ-SFV">
+                                <rect key="frame" x="548" y="6" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search">
-                                    <color key="titleColor" red="0.99215686270000003" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" image="search"/>
                                 <connections>
                                     <segue destination="Eda-fp-Umx" kind="show" identifier="ToSearchView" id="PsT-pC-0MS"/>
                                 </connections>
@@ -277,7 +275,7 @@
                                             <constraint firstAttribute="height" constant="30" id="YwN-Dc-z5x"/>
                                         </constraints>
                                         <state key="normal" title="排序">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.76862745099999996" green="0.2156862745" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="sortButton:" destination="Eda-fp-Umx" eventType="touchUpInside" id="xZH-7R-zQ8"/>
@@ -290,14 +288,14 @@
                                             <constraint firstAttribute="height" constant="30" id="ngQ-DG-6OK"/>
                                         </constraints>
                                         <state key="normal" title="篩選">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.76862745099999996" green="0.2156862745" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="Dul-PR-t9v" kind="presentation" identifier="ToFilterMainView" id="ZKf-vY-Idv"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.6705882353" green="0.70196078429999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2d7-mg-IS3"/>
                                     <constraint firstItem="dyg-2d-B7o" firstAttribute="leading" secondItem="MRh-SP-CLY" secondAttribute="leading" constant="100" id="AQY-b3-PxK"/>
@@ -1467,6 +1465,7 @@
         <image name="heart" width="128" height="128"/>
         <image name="profile" width="32" height="32"/>
         <image name="profiles" width="32" height="32"/>
+        <image name="search" width="32" height="32"/>
         <image name="stars" width="32" height="32"/>
         <image name="starss" width="32" height="32"/>
         <image name="tabbarcat" width="32" height="32"/>
