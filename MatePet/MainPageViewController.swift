@@ -54,7 +54,10 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: 300, height: 300)
+    }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mainCats.count
