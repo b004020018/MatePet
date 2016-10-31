@@ -8,6 +8,10 @@
 
 import UIKit
 
+class sortCell:UITableViewCell {
+    @IBOutlet weak var sortLabel: UILabel!
+}
+
 class SortTableViewController: UITableViewController {
     
     let sortArray = ["時間前至後", "時間後至前", "Likes 多到少", "Likes 少到多"]
@@ -18,8 +22,8 @@ class SortTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier( "sortCell", forIndexPath: indexPath)
-        cell.textLabel?.text = sortArray[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier( "sortCell", forIndexPath: indexPath) as! sortCell
+        cell.sortLabel.text = sortArray[indexPath.row]
         return cell
     }
     

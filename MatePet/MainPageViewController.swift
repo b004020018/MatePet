@@ -56,7 +56,9 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 300, height: 300)
+        let cellWidth = (self.view.frame.width-30)/2
+        let cellHeight = cellWidth + 60
+        return CGSize(width:cellWidth, height: cellHeight)
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

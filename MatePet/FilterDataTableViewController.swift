@@ -76,7 +76,7 @@ class FilterDataTableViewController: UITableViewController, UIPickerViewDelegate
         self.tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0)
         
         //TASK: setting segment font
-        ageSegment.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Black", size: 14.0)! ], forState: .Normal)
+        ageSegment.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Black", size: 16.0)! ], forState: .Normal)
         sexSegment.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Black", size: 16.0)! ], forState: .Normal)
         
         //TASK: setting pickerView

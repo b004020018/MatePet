@@ -13,7 +13,7 @@ class  PersonalViewController: UIViewController {
     @IBOutlet weak var personalLikesView: UIView!
     @IBOutlet weak var personalOwnedView: UIView!
 
-    
+    @IBOutlet weak var personalViewSegmentedControl: UISegmentedControl!
     @IBAction func personalViewSegmentedControl(sender: UISegmentedControl) {
         let isTableSelected = (sender.selectedSegmentIndex == 0)
         personalLikesView.hidden = !isTableSelected
@@ -23,7 +23,7 @@ class  PersonalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        personalViewSegmentedControl.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Black", size: 14.0)! ], forState: .Normal)
         personalLikesView.hidden = false
         personalOwnedView.hidden = true
     }

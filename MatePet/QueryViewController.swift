@@ -138,6 +138,11 @@ class QueryViewController: UIViewController, UIPopoverPresentationControllerDele
         return searchCats.count
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let cellWidth = (self.view.frame.width-30)/2
+        let cellHeight = cellWidth + 60
+        return CGSize(width:cellWidth, height: cellHeight)
+    }    
     
      func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath)
         -> UICollectionViewCell {

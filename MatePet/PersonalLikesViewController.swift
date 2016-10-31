@@ -21,8 +21,7 @@ class PersonalLikesTableCell: UITableViewCell {
     @IBOutlet weak var catView: UIView!
     @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var catImageView: UIImageView!
-    
-
+    @IBOutlet weak var catLikesCountLabel: UILabel!
 }
 
 
@@ -83,6 +82,7 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.catSex.text = likesCats[indexPath.row].sex
         cell.catColour.text = likesCats[indexPath.row].colour
         cell.catAge.text = likesCats[indexPath.row].age
+        cell.catLikesCountLabel.text = String(likesCats[indexPath.row].likesCount)
         let catID = likesCats[indexPath.row].catID
         if likesCats[indexPath.row].selected == "image" {
             let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")

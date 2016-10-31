@@ -22,9 +22,7 @@ class PersonalOwnsTableCell: UITableViewCell {
     @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var catImageView: UIImageView!
     
-    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-
 }
 
 protocol OwnsManagerDelegate: class {
@@ -78,6 +76,7 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
         cell.catColour.text = OwnsCats[indexPath.row].colour
         cell.catAge.text = OwnsCats[indexPath.row].age
 //        cell.deleteButton
+        cell.deleteButton.layer.cornerRadius = 0.5 * cell.deleteButton.bounds.size.width
         cell.deleteButton.addTarget(self, action: #selector(self.deletePost(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         let catID = OwnsCats[indexPath.row].catID
         if OwnsCats[indexPath.row].selected == "image" {
