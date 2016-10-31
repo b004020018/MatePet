@@ -40,6 +40,8 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet weak var saveNewDataButton: UIButton!
     @IBAction func saveNewDataButton(sender: UIButton) {
+        selectedDataDetail.description = addDataTextView.text
+        
         guard let selectedDataDetailSex = selectedDataDetail.sex,
               let selectedDataDetailAge = selectedDataDetail.age,
               let selectedDataDetailColour = selectedDataDetail.colour,
@@ -214,7 +216,6 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.dataUpdateProgressView.hidden = true
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
-        selectedDataDetail.description = addDataTextView.text
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddNewDataViewController.addImageVideoViewTapped(_:)))
         addVideoView.userInteractionEnabled = true

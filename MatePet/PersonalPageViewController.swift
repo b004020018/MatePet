@@ -14,6 +14,7 @@ import FBSDKLoginKit
 class PersonalPageViewController: UIViewController {
     
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userImageBack: UIView!
     @IBOutlet weak var userNameLabel: UILabel!
     
     @IBAction func FBLogotButton(sender: UIButton) {
@@ -30,7 +31,8 @@ class PersonalPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          self.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 20)
-        
+        userImageBack.layer.cornerRadius = self.userImageBack.frame.size.width / 2
+        userImageBack.clipsToBounds = true
         userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
         

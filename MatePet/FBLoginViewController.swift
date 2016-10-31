@@ -32,7 +32,7 @@ class FBLoginViewController: UIViewController {
                     
                     userDefault.setValue(user.uid, forKey: "userFirebaseID")
                     userDefault.setValue(user.displayName, forKey: "userName")
-                    userDefault.setValue(user.email, forKey: "userName")
+                    userDefault.setValue(user.email, forKey: "userEmail")
                     userDefault.setURL(user.photoURL, forKey: "userPhoto")
                     userDefault.synchronize()
                     
