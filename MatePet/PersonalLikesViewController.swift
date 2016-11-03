@@ -28,7 +28,7 @@ class PersonalLikesTableCell: UITableViewCell {
 class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var personalLikesTableView: UITableView!
-    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var receiveCats = [Cat]()
     var likesCats = [Cat]()
@@ -36,7 +36,18 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
     var passCat: Cat!
     
     override func viewDidAppear(animated: Bool) {
-        self.receiveCats = LocalDataModel.shared.cats 
+        if appDelegate.isLogin == false {
+            let alertController = UIAlertController(title: "使用者未登入", message: "要先登入才能管理最愛唷！", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                guard let vc = self.storyboard!.instantiateViewControllerWithIdentifier("FBLoginView") as?FBLoginViewController else {fatalError()}
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            alertController.view.tintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+        self.receiveCats = LocalDataModel.shared.cats
         let databaseRef = FIRDatabase.database().reference().child("Likes")
         let user = (FIRAuth.auth()?.currentUser?.uid)!
         databaseRef.queryOrderedByChild("likePersonID").queryEqualToValue(user).observeEventType(.Value , withBlock: { snapshot in
@@ -60,13 +71,15 @@ class PersonalLikesViewController: UIViewController, UITableViewDelegate, UITabl
             for catItem in self.receiveCats {
                 for postItem in self.postsID{
                     if catItem.catID == postItem {
-                    self.likesCats.append(catItem)
+                        self.likesCats.append(catItem)
                     }
                 }
             }
-    self.personalLikesTableView.reloadData()
-    })
+            self.personalLikesTableView.reloadData()
+        })
     }
+    
+
     
 
     

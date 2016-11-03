@@ -35,16 +35,25 @@ protocol OwnsManagerDelegate: class {
 class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, OwnsManagerDelegate {
 
     @IBOutlet weak var personalOwnsTableView: UITableView!
-    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var receiveCats = [Cat]()
     var OwnsCats = [Cat]()
     var postsID = [String]()
     var passCat: Cat!
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        if appDelegate.isLogin == false {
+            let alertController = UIAlertController(title: "使用者未登入", message: "要先登入才能管理最愛唷！", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                guard let vc = self.storyboard!.instantiateViewControllerWithIdentifier("FBLoginView") as?FBLoginViewController else {fatalError()}
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            alertController.view.tintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
         let vc = LocalDataModel.shared
         vc.ownsdelegate = self
         vc.fetchCats()
@@ -117,44 +126,53 @@ class PersonalOwnsViewController: UIViewController, UITableViewDataSource, UITab
     
     func deletePost(sender: UIButton!) {
         //delete database
-        guard let cell = sender.superview?.superview as? PersonalOwnsTableCell else {
+        guard
+        let cell = sender.superview?.superview as? PersonalOwnsTableCell,
+        let indexPath = personalOwnsTableView.indexPathForCell(cell)
+        else {
             fatalError()
-        }
-        let deleteCatPath = self.personalOwnsTableView.indexPathForCell(cell)!.row
-        let deleteCat = OwnsCats[deleteCatPath]
-        let deletePostID = deleteCat.catID
-        
-        let rootRef = FIRDatabase.database().reference()
-        rootRef.child("Cats").child(deletePostID).removeValue()
-        
-        
-        //delete storage
-        if deleteCat.selected == "image" {
-            let storageRef = FIRStorage.storage().reference().child("Cats/\(deletePostID).jpg")
-            
-            storageRef.deleteWithCompletion { (error) -> Void in
-                if (error != nil) {
-                    print("Delete image error")
-                } else {
-                    self.personalOwnsTableView.reloadData()
-                }
-                
             }
-        } else {
-            let storageRef = FIRStorage.storage().reference().child("Cats/\(deletePostID).mov")
-            
-            storageRef.deleteWithCompletion { (error) -> Void in
-                if (error != nil) {
-                    print("Delete Video error")
-                } else {
-                    self.personalOwnsTableView.reloadData()
-                }
-                
-                
-            }
-            
+        
+        let alertController = UIAlertController(title: "刪除資料", message: "確認刪除資料？", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+            return
         }
-    }
+        let deleteAction = UIAlertAction(title: "刪除", style: UIAlertActionStyle.Default){ (result : UIAlertAction) -> Void in
+            let deleteCat = self.OwnsCats[indexPath.row]
+            let deletePostID = deleteCat.catID
+            
+            let rootRef = FIRDatabase.database().reference()
+            rootRef.child("Cats").child(deletePostID).removeValue()
+            
+            //delete storage
+            if deleteCat.selected == "image" {
+                let storageRef = FIRStorage.storage().reference().child("Cats/\(deletePostID).jpg")
+                
+                storageRef.deleteWithCompletion { (error) -> Void in
+                    if (error != nil) {
+                        print("Delete image error")
+                    } else {
+                        self.personalOwnsTableView.reloadData()
+                    }
+                    
+                }
+            } else {
+                let storageRef = FIRStorage.storage().reference().child("Cats/\(deletePostID).gif")
+                
+                storageRef.deleteWithCompletion { (error) -> Void in
+                    if (error != nil) {
+                        print("Delete Video error")
+                    } else {
+                        self.personalOwnsTableView.reloadData()
+                    }
+                }
+            }
+        }
+        alertController.view.tintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+        alertController.addAction(okAction)
+        alertController.addAction(deleteAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        }
     
     
     

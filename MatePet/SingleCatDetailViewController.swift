@@ -13,11 +13,13 @@ import MediaPlayer
 import AVKit
 import FaveButton
 import SwiftGifOrigin
+import FBSDKShareKit
 
 class SingleCatDetailViewController: UIViewController {
     
     var cat: Cat!
     var buttonHidden: Bool!
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
@@ -51,25 +53,58 @@ class SingleCatDetailViewController: UIViewController {
             
         let safariVC = SFSafariViewController(URL: fbURL)
         presentViewController(safariVC, animated: true, completion: nil)
-
         
     }
     
+    @IBAction func ShareButton(sender: UIButton) {
+        if appDelegate.isLogin == false {
+            let alertController = UIAlertController(title: "使用者未登入", message: "要先登入才能分享到FB唷！", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                guard let vc = self.storyboard!.instantiateViewControllerWithIdentifier("FBLoginView") as?FBLoginViewController else {fatalError()}
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            alertController.view.tintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+        let content = FBSDKShareLinkContent()
+        guard let shareImageLink = self.catImageLink else {
+            print("can't get ImageURL")
+            return
+        }
+        content.contentURL = shareImageLink
+        FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil)
+    }
+    
+    
     
     let facebookData = NSUserDefaults.standardUserDefaults()
-    var userFirebaseID: String!
+    var userFirebaseID: String?
 
     
     @IBAction func loveButton(sender: FaveButton) {
+        
+        if appDelegate.isLogin == false {
+            let alertController = UIAlertController(title: "使用者未登入", message: "要先登入才能收藏到最愛唷！", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
+                guard let vc = self.storyboard!.instantiateViewControllerWithIdentifier("FBLoginView") as?FBLoginViewController else {fatalError()}
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            alertController.view.tintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
         let rootRef = FIRDatabase.database().reference()
-        if snapshotExist == false {
+        if self.snapshotExist == false {
             let like: [String : AnyObject] = [
-                "postID" : cat.catID,
-                "likePersonID" : userFirebaseID]
+                "postID" : self.cat.catID,
+                "likePersonID" : self.userFirebaseID!]
             let autoID = rootRef.child("Likes").childByAutoId().key
             rootRef.child("Likes").child(autoID).setValue(like)
             
-            let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount + 1]
+            let childUpdates = ["/\(self.cat.catID)/likesCount": self.cat.likesCount + 1]
             rootRef.child("Cats").updateChildValues(childUpdates)
             
             guard let n: Int = (self.navigationController?.viewControllers.count) else {
@@ -77,14 +112,15 @@ class SingleCatDetailViewController: UIViewController {
                 return
             }
             if let presentVC = self.navigationController?.viewControllers[n-2] as? QueryViewController {
-                presentVC.acceptLikesCount(cat.catID, likesCount: cat.likesCount + 1)
+                presentVC.acceptLikesCount(self.cat.catID, likesCount: self.cat.likesCount + 1)
             }
         }else {
             
-            let likeID = likeKey
+            let likeID = self.likeKey
+            
             rootRef.child("Likes").child(likeID).removeValue()
             
-            let childUpdates = ["/\(cat.catID)/likesCount": cat.likesCount - 1]
+            let childUpdates = ["/\(self.cat.catID)/likesCount": self.cat.likesCount - 1]
             rootRef.child("Cats").updateChildValues(childUpdates)
             
             guard let n: Int = (self.navigationController?.viewControllers.count) else {
@@ -92,15 +128,14 @@ class SingleCatDetailViewController: UIViewController {
                 return
             }
             if let presentVC = self.navigationController?.viewControllers[n-2] as? QueryViewController {
-                presentVC.acceptLikesCount(cat.catID, likesCount: cat.likesCount - 1)
-                
-            }
-        }
+                presentVC.acceptLikesCount(self.cat.catID, likesCount: self.cat.likesCount - 1)
+            }}
     }
     
     
     var snapshotExist = false
     var likeKey = ""
+    var catImageLink: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +144,7 @@ class SingleCatDetailViewController: UIViewController {
             self.closeButton.hidden = true
         }else {
             self.closeButton.hidden = false
+            self.closeButton.layer.cornerRadius = 0.5 * closeButton.bounds.size.width
         }
 
         imageIndicator.startAnimating()
@@ -117,13 +153,14 @@ class SingleCatDetailViewController: UIViewController {
         catSexLabel.text = cat.sex
         catDistrictLabel.text = cat.district
         catDescription.text = cat.description
-        userFirebaseID = facebookData.stringForKey("userFirebaseID")
+        userFirebaseID = FIRAuth.auth()?.currentUser?.uid
         if cat.selected == "image" {
             let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(cat.catID).jpg")
             storageRef.downloadURLWithCompletion { (url, error) -> Void in
                 if (error != nil) {
                     print("error")
                 } else {
+                    self.catImageLink = url
                     self.catImageView.hnk_setImageFromURL(url!)
                 }
             self.imageIndicator.stopAnimating()
@@ -141,6 +178,7 @@ class SingleCatDetailViewController: UIViewController {
                             print("can't get gif url from firebase")
                             return
                         }
+                        self.catImageLink = url
                         self.catImageView.image = UIImage.gifWithURL("\(gifUrl)")
                     }
                 }

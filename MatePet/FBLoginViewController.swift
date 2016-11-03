@@ -12,7 +12,22 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Crashlytics
 
+
 class FBLoginViewController: UIViewController {
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    @IBOutlet weak var unLoginBrowseButton: UIButton!
+    @IBAction func unLoginBrowseButton(sender: UIButton) {
+        self.appDelegate.isLogin = false
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let parent = self.presentingViewController as? UITabBarController
+        parent?.selectedIndex = 0
+        print("browse")
+    }
+    
+    
+    @IBOutlet weak var FBLoginButton: UIButton!
     @IBAction func FBLoginButton(sender: UIButton) {
         let facebookLogin = FBSDKLoginManager()
         facebookLogin.logInWithReadPermissions(["public_profile", "email"], fromViewController: self, handler:{(facebookResult, facebookError) -> Void in
@@ -35,18 +50,20 @@ class FBLoginViewController: UIViewController {
                     userDefault.setValue(user.email, forKey: "userEmail")
                     userDefault.setURL(user.photoURL, forKey: "userPhoto")
                     userDefault.synchronize()
-                    
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let ToMainViewController = storyboard.instantiateViewControllerWithIdentifier("ToTabBarController") as! UITabBarController
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    appDelegate.window?.rootViewController = ToMainViewController
-                    
-                    print("You’re in :)")
+                    self.appDelegate.isLogin = true
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    print("login FB")
                 }
             }
         })
+
     }
     
-}
+    override func viewDidLoad() {
+        self.FBLoginButton.layer.cornerRadius = 5
+        self.unLoginBrowseButton.layer.cornerRadius = 5
+    }
+    
 
+}
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FF7D45B7FAE6364C5493941 /* Pods_MatePet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B7491DDB27D4E159B06FB1 /* Pods_MatePet.framework */; };
 		A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00348851DAE1A1D0088ADE4 /* FirebaseDataModel.swift */; };
+		A0229CFC1DCAE9D7008F689F /* ShakeRandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A8B831DB7692500648E04 /* ShakeRandomViewController.swift */; };
 		A03484831DB9FEA00009A339 /* ToAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03484821DB9FEA00009A339 /* ToAddViewController.swift */; };
 		A03716531DC0B5D700216C8A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A03716521DC0B5D700216C8A /* .gitignore */; };
 		A043198A1DA78E5F00698EA1 /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04319891DA78E5F00698EA1 /* QueryViewController.swift */; };
@@ -16,7 +17,6 @@
 		A0438CFC1DB4B84F00025820 /* LocalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFB1DB4B84F00025820 /* LocalDataModel.swift */; };
 		A0438CFE1DB4DB3800025820 /* PersonalLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0438CFD1DB4DB3800025820 /* PersonalLikesViewController.swift */; };
 		A04AC56B1D9D1A5D00558C6A /* DatabaseEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04AC56A1D9D1A5D00558C6A /* DatabaseEnum.swift */; };
-		A06A8B841DB7692500648E04 /* ShakeRandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06A8B831DB7692500648E04 /* ShakeRandomViewController.swift */; };
 		A070419E1D9AD17900674297 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A070419D1D9AD17900674297 /* FBLoginViewController.swift */; };
 		A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0839BEE1DB07CC2005D9B26 /* SingleCatDetailViewController.swift */; };
 		A0A0F8D41DA6545C00609C5C /* FilterDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A0F8D31DA6545C00609C5C /* FilterDataTableViewController.swift */; };
@@ -186,7 +186,7 @@
 				TargetAttributes = {
 					A0E712941D99618700E60826 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 28W9L52PAW;
+						DevelopmentTeam = S3Q57P9GAV;
 					};
 				};
 			};
@@ -299,7 +299,7 @@
 				A0E7129B1D99618700E60826 /* AddNewDataViewController.swift in Sources */,
 				A0E712991D99618700E60826 /* AppDelegate.swift in Sources */,
 				A043198C1DA7AB0100698EA1 /* SortTableViewController.swift in Sources */,
-				A06A8B841DB7692500648E04 /* ShakeRandomViewController.swift in Sources */,
+				A0229CFC1DCAE9D7008F689F /* ShakeRandomViewController.swift in Sources */,
 				A0839BEF1DB07CC2005D9B26 /* SingleCatDetailViewController.swift in Sources */,
 				A0C155221DAF780200483086 /* PersonalPageViewController.swift in Sources */,
 				A00348861DAE1A1D0088ADE4 /* FirebaseDataModel.swift in Sources */,
@@ -372,6 +372,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "16059aea-d79e-4683-9f2e-3ce83b3d27a1";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -410,6 +411,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "8530d621-63ef-4a7d-8b43-5d145fdc131b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -425,7 +427,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = MatePet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RosalieRabbit.MatePet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Rosaliedevios.MatePet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -441,7 +443,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MatePet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RosalieRabbit.MatePet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Rosaliedevios.MatePet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

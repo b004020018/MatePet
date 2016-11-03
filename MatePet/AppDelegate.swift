@@ -18,6 +18,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var isLogin:Bool?
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)

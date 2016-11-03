@@ -2,20 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Fabric</key>
-    <dict>
-        <key>APIKey</key>
-        <string>af2b3e345e4eb594deb19b576afbec10aa3d586d</string>
-        <key>Kits</key>
-        <array>
-            <dict>
-                <key>KitInfo</key>
-                <dict/>
-                <key>KitName</key>
-                <string>Crashlytics</string>
-            </dict>
-        </array>
-    </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -42,14 +28,28 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>af2b3e345e4eb594deb19b576afbec10aa3d586d</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
 	<string>1313707081973645</string>
 	<key>FacebookDisplayName</key>
 	<string>MatePet</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-        <string>fb</string>
+		<string>fb</string>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>

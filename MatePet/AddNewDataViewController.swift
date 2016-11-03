@@ -138,7 +138,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
     func fusumaImageSelected(image: UIImage) {
         selected = "image"
         self.selectedImageView.image = image
-        imagedata = UIImagePNGRepresentation(image)
+        imagedata = UIImageJPEGRepresentation(image, 0.1)
         print("Image selected")
     }
     
@@ -221,6 +221,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         addVideoView.userInteractionEnabled = true
         addVideoView.addGestureRecognizer(tapGestureRecognizer)
        
+        fusumaTintColor = UIColor.init(red: 138.0/255.0, green: 14.0/255.0, blue: 77.0/255.0, alpha: 1.0)
     }
     
     //TASK: pickerView
@@ -276,7 +277,7 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         switch pickerType {
         case .sexual :
             let sex = sexualPicker[row]
-            selectedDataDetail.sex = sex.rawValue // server
+            selectedDataDetail.sex = sex.rawValue
             
         case .age :
             let age = agePicker[row]
@@ -311,9 +312,9 @@ class AddNewDataViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.endEditing(true)
     }
     
-    //TASK: textView move up
+//    TASK: textView move up
     func textViewDidBeginEditing(textView: UITextView) {
-        
+        self.addDataTextView.text = ""
         self.animatetextView(textView, up: true)
     }
     

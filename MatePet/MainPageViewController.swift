@@ -39,8 +39,13 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
     var mainCats = [Cat]()
     var passCat: Cat!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let loginvc = self.storyboard!.instantiateViewControllerWithIdentifier("FBLoginView") as?FBLoginViewController else {fatalError()}
+        self.presentViewController(loginvc, animated: false, completion: nil)
+        
         let vc = LocalDataModel.shared
         vc.delegate = self
         vc.fetchCats()
@@ -80,7 +85,7 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).jpg")
                 storageRef.downloadURLWithCompletion { (url, error) -> Void in
                     if (error != nil) {
-                        print("error")
+                        print("get image error")
                     } else {
                         cell.imageView.hnk_setImageFromURL(url!)
                     }
@@ -90,7 +95,7 @@ class MainPageViewController: UICollectionViewController, CatManagerDelegate {
                 let storageRef = FIRStorage.storage().referenceWithPath("Cats/\(catID).gif")
                 storageRef.downloadURLWithCompletion{ (url, error) -> Void in
                     if error != nil {
-                        print("error")
+                        print("get video error")
                     } else {
                         guard let gifUrl = url else {
                         print("can't get gif url from firebase")
