@@ -44,7 +44,7 @@ Libraries
 ScreenShot
 ------
 
-![](http://imgur.com/oHl0gMJ.jpg)
+![](https://cloud.githubusercontent.com/assets/21031415/20054718/137f2c36-a519-11e6-966d-b29b9af6e113.jpg)
 ![](http://imgur.com/i9eTW8P.jpg)
 ![](http://i.imgur.com/8dUxVP5.jpg)
 ![](http://i.imgur.com/RnTT5pN.jpg)
