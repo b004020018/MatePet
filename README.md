@@ -1,5 +1,6 @@
 MatePet
 ======
+MatePet is a platfrom for cat lovers which allows users to give cats or adopt cats. users can upload giving posts which contain a image or video with some descriptions or can choose cats to adopt depending on filtering methods.
 
 Feature
 ------
