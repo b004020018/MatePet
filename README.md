@@ -1,6 +1,6 @@
 MatePet
 ======
->MatePet is a platfrom for cat lovers which allows users to give cats or adopt cats. users can upload giving posts which contain a image or video with some descriptions or can choose cats to adopt depending on filtering methods.users can make use of Facebook to contact directly. Moreover, Matepet provides managed posts and added favorites functions that make adoption process more convenient!
+>MatePet is a platfrom for cat lovers which allows users to give cats or adopt cats. users can upload giving posts which contain an image or video with some descriptions or can choose cats to adopt depending on filtering methods. Then, users can make use of Facebook to contact directly. Moreover, Matepet provides managed posts and added favorites functions that make adoption process more convenient!
 
 Feature
 ------
