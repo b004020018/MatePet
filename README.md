@@ -43,7 +43,7 @@ Libraries
 
 ScreenShot
 ------
-![](http://imgur.com/oHl0gMJ.jpg)
+![](http://imgur.com/oHl0gMJ)
 ![](http://imgur.com/i9eTW8P.jpg)
 ![](http://i.imgur.com/8dUxVP5.jpg)
 ![](http://i.imgur.com/RnTT5pN.jpg)
