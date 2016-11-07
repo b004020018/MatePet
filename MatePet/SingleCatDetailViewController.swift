@@ -86,6 +86,7 @@ class SingleCatDetailViewController: UIViewController {
     @IBAction func loveButton(sender: FaveButton) {
         
         if appDelegate.isLogin == false {
+            self.loveButton.selected = false
             let alertController = UIAlertController(title: "使用者未登入", message: "要先登入才能收藏到最愛唷！", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (result : UIAlertAction) -> Void in
                 guard let vc = self.storyboard!.instantiateViewControllerWithIdentifier("FBLoginView") as?FBLoginViewController else {fatalError()}
