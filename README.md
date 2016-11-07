@@ -4,7 +4,12 @@ MatePet
 
 Feature
 ------
+* Login
+ * Facebook Login
+ * Directly Browse
+* 
 
+  
 Libraries
 ------
 
