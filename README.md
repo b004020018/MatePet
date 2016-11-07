@@ -4,9 +4,10 @@ MatePet
 
 Feature
 ------
-* Login
- * Facebook Login MatePet
+* Login and Logout
+ * Login MatePet via Facebook
  * Directly Browse
+ * Logout MatePet
 * Home
  * Browse all giving posts
  * Search in specific conditions using filter and sort
@@ -22,12 +23,10 @@ Feature
  * Select to use Image or Video of the post
  * Manage Owns
  * Delete Owns
-* Special 
- * Shake mobile to get a random post
 * User Info
  * Present the user Info of Facebook
- * Logout MatePet
-
+* Special 
+ * Shake mobile to get a random post
 
   
 Libraries
