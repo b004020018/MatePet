@@ -12,6 +12,9 @@ ScreenShot
 
 Requirement
 ------
+* iOS 9.0+
+* Xcode 7.3+
+* pod install
 
 Contacts
 ------
