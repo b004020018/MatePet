@@ -27,10 +27,18 @@ Feature
  * Present the user Info of Facebook
 * Special 
  * Shake mobile to get a random post
-
-  
 Libraries
 ------
+* FacebookSDK
+* Firebase
+* Fusuma
+* HanekeSwift
+* Regif
+* SwiftGifOrigin
+* FaveButton
+* Tracking Tool
+    * Firebase Analytics
+    * Crashlytics
 
 ScreenShot
 ------
