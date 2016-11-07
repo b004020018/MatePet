@@ -27,6 +27,7 @@ Feature
  * Present the user Info of Facebook
 * Special 
  * Shake mobile to get a random post
+
 Libraries
 ------
 * FacebookSDK
@@ -37,8 +38,8 @@ Libraries
 * SwiftGifOrigin
 * FaveButton
 * Tracking Tool
-    * Firebase Analytics
-    * Crashlytics
+ * Firebase Analytics
+ * Crashlytics
 
 ScreenShot
 ------
