@@ -20,7 +20,7 @@ Feature
  * Manage favorites
 * Owns
  * Create a post of the giving cat
- * Select to use Image or Video of the post
+ * Select to use image or video of the post
  * Manage Owns
  * Delete Owns
 * User Info
